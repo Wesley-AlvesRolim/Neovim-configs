@@ -2,8 +2,8 @@
 vim.api.nvim_set_keymap("i", "<C-v>", "'", { silent = true })
 
 -- Nvim.Tree
-vim.api.nvim_set_keymap("n", "<C-B>", ":NvimTreeFocus<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<C-B>", "<C-c>:NvimTreeFocus<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-B>", ":NvimTreeToggle<CR>", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-B>", "<C-c>:NvimTreeToggle<CR>", { silent = true })
 
 -- save CTRL + s
 vim.api.nvim_set_keymap("i", "<C-s>", "<C-c>:w<CR>", { silent = true })
