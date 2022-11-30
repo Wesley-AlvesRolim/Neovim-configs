@@ -47,16 +47,6 @@
   },
 
   // diagnostic settings
-  "diagnostic.displayByAle": false,
-  "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.errorSign": "✘",
-  "diagnostic.warningSign": "⚠",
-  "diagnostic.infoSign": "",
-  "diagnostic.hintSign": "ஐ",
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.virtualTextPrefix": " ❯ ",
-  "diagnostic.virtualText": true,
-  "diagnostic.enableMessage": "never",
 
   // other language specific settings
   "html.autoClosingTags": true,
