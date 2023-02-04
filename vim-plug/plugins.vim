@@ -4,12 +4,16 @@ Plug 'kevinoid/vim-jsonc'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-let g:coc_global_extensions = [ 'coc-css', 'coc-html', 'coc-json', 'coc-eslint']  " list of CoC extensions needed
+let g:coc_global_extensions = [ 'coc-css', 'coc-html', 'coc-json', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tabnine']  " list of CoC extensions needed
 
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 
 " theme
 Plug 'dracula/vim'
+
+" Rainbow brackets 
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
 
 " these two plugins will add highlighting and indenting to JSX and TSX files.
 Plug 'pangloss/vim-javascript'
@@ -22,5 +26,12 @@ Plug 'kyazdani42/nvim-tree.lua'
 " Files finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+" Tabs on nvim
+Plug 'romgrk/barbar.nvim'
+
+" Git
+Plug 'lewis6991/gitsigns.nvim'
+
 call plug#end()
 
