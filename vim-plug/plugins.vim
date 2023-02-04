@@ -19,6 +19,8 @@ let g:rainbow_active = 1
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/vim-jsx-improve'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " File explorer tree CTRL + B
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
