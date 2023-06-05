@@ -5,4 +5,3 @@ vim.o.cursorline = true
 vim.o.shiftwidth = 2
 vim.o.scrolloff = 4
 vim.opt.background = "dark"
-
