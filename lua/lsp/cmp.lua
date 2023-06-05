@@ -7,6 +7,25 @@ local configs = {
 		end,
 	},
 
+	formatting = {
+		format = function(entry, vim_item)
+			local icons = require("config.icons").kinds
+			vim_item.kind = string.format("%s", icons[vim_item.kind], vim_item.kind)
+			-- Source
+			vim_item.menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				path = "[Path]",
+				emoji = "[Emoji]",
+				neorg = "[Neorg]",
+				spell = "[Spell]",
+			})[entry.source.name]
+			return vim_item
+		end,
+	},
+
 	mapping = cmp.mapping.preset.insert({
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -57,6 +76,7 @@ local configs = {
 			priority = 50,
 			group_index = 3,
 		},
+		{ name = "emoji" },
 	}),
 }
 
