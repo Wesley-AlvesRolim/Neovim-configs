@@ -23,7 +23,12 @@ require("lazy").setup({
 	},
 
 	-- Auto close ( [ {
-	{ "jiangmiao/auto-pairs" },
+	{
+		"windwp/nvim-autopairs",
+		config = function(_, opts)
+			require("nvim-autopairs").setup(opts)
+		end,
+	},
 
 	-- theme
 	{
@@ -110,7 +115,7 @@ require("lazy").setup({
 		"vigoux/notifier.nvim",
 		config = function()
 			require("notifier").setup({
-				components = { "nvim", "lsp" },
+				components = { "nvim", "lsp", "mason", "null-ls", "treesitter" },
 			})
 		end,
 	},
