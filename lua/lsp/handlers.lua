@@ -1,11 +1,12 @@
-local configs = {}
+local M = {}
+local icons = require("config.icons")
 
-configs.setup = function()
+M.setup = function()
 	local signs = {
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn",  text = "" },
-		{ name = "DiagnosticSignHint",  text = "" },
-		{ name = "DiagnosticSignInfo",  text = "" },
+		{ name = "DiagnosticSignError", text = icons.diagnostics.Error },
+		{ name = "DiagnosticSignWarn", text = icons.diagnostics.Warn },
+		{ name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+		{ name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
 	}
 
 	for _, sign in ipairs(signs) do
@@ -50,28 +51,8 @@ local function lsp_keymaps(bufnr)
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format{async=true}' ]])
 end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local lsp_formatting = function(bufnr)
-	vim.lsp.buf.format({
-		filter = function(client)
-			return client.name == "null-ls"
-		end,
-		bufnr = bufnr,
-	})
-end
-
-configs.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
 	lsp_keymaps(bufnr)
-	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			buffer = bufnr,
-			callback = function()
-				lsp_formatting(bufnr)
-			end,
-		})
-	end
 end
 
-return configs
+return M

@@ -4,7 +4,7 @@ local M = {}
 M.setup = function(servers)
 	for _, server in pairs(servers) do
 		local opts = {
-			on_attach = require("lsp.handlers").on_attach,
+			on_attach = configs.on_attach,
 			capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		}
 
