@@ -3,6 +3,14 @@ local keymap = vim.keymap.set
 -- paste "'"
 keymap("i", "<C-v>", "'", { silent = true })
 
+-- Move current line / block with Alt-j/k like vscode.
+keymap("n", "<A-j>", ":m .+1<CR>==", { silent = true })
+keymap("n", "<A-k>", ":m .-2<CR>==", { silent = true })
+keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", { silent = true })
+keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", { silent = true })
+keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
+keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
+
 -- Nvim.Tree
 keymap("n", "<C-B>", ":NvimTreeToggle<CR>", { silent = true })
 keymap("i", "<C-B>", "<C-c>:NvimTreeToggle<CR>", { silent = true })
@@ -24,7 +32,9 @@ keymap("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 keymap("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- Comment
-keymap("v", "<leader>/",
+keymap(
+	"v",
+	"<leader>/",
 	"<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
 	{ desc = "Toggle comment for selection" }
 )
