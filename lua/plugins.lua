@@ -60,7 +60,17 @@ require("lazy").setup({
 
 	-- Rainbow brackets
 	{
-		"fedepujol/bracketpair.nvim",
+		"mrjones2014/nvim-ts-rainbow",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+					x_file_lines = nil,
+				},
+			})
+		end,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		lazy = false,
 	},
 
