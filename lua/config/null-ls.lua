@@ -35,5 +35,8 @@ null_ls.setup({
 		diagnostics.editorconfig_checker.with({
 			command = "editorconfig-checker",
 		}),
+
+		-- snippets support
+		null_ls.builtins.completion.luasnip,
 	},
 })
