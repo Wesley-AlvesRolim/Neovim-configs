@@ -114,6 +114,13 @@ require("lazy").setup({
 	-- LSP
 	{ "neovim/nvim-lspconfig" },
 	{
+		"https://git.sr.ht/~nedia/auto-format.nvim",
+		event = "BufWinEnter",
+		config = function()
+			require("auto-format").setup()
+		end,
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			-- CMP Sources
