@@ -49,10 +49,10 @@ require("lazy").setup({
 		priority = 1000,
 		config = function()
 			vim.cmd([[
-        if (has("termguicolors"))
-          set termguicolors
-        endif
-      ]])
+				if (has("termguicolors"))
+				set termguicolors
+				endif
+			]])
 			vim.cmd([[ syntax enable ]])
 			vim.cmd([[ colorscheme dracula ]])
 		end,
@@ -79,7 +79,7 @@ require("lazy").setup({
 
 	{ "neoclide/vim-jsx-improve" },
 
-	{ "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
 	-- File explorer tree CTRL + B
 	{
@@ -88,7 +88,7 @@ require("lazy").setup({
 	},
 
 	-- Files finder
-	{ "nvim-telescope/telescope.nvim",    tag = "0.1.1",      dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim", tag = "0.1.1", dependencies = { "nvim-lua/plenary.nvim" } },
 
 	-- Tabs on nvim
 	{ "romgrk/barbar.nvim" },
@@ -103,7 +103,7 @@ require("lazy").setup({
 	{ "Exafunction/codeium.vim" },
 
 	-- Null ls
-	{ "williamboman/mason.nvim",          cmd = "MasonUpdate" },
+	{ "williamboman/mason.nvim", build = ":MasonUpdate" },
 
 	{ "williamboman/mason-lspconfig.nvim" },
 
@@ -146,6 +146,9 @@ require("lazy").setup({
 			require("notifier").setup({
 				components = { "nvim", "lsp", "mason", "null-ls", "treesitter" },
 			})
+			print = function(message, level, opt)
+				return vim.notify(message, level, opt)
+			end
 		end,
 	},
 })
