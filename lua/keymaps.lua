@@ -30,11 +30,3 @@ keymap("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 keymap("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 keymap("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 keymap("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-
--- Comment
-keymap(
-	"v",
-	"<leader>/",
-	"<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
-	{ desc = "Toggle comment for selection" }
-)
