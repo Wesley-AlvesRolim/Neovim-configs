@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "kevinoid/vim-jsonc" },
+
 	-- Comment
 	{
 		"numToStr/Comment.nvim",
@@ -137,6 +137,14 @@ require("lazy").setup({
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 		},
+	},
+
+	-- Search and replace
+	{
+		"roobert/search-replace.nvim",
+		config = function()
+			require("search-replace").setup()
+		end,
 	},
 
 	-- Notifier
