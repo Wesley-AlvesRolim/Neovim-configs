@@ -36,23 +36,35 @@ M.setup = function()
 	})
 end
 
-local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true }
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", vim.lsp.buf.definition, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", vim.lsp.buf.implementation, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", vim.lsp.buf.references, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", vim.lsp.buf.hover, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", vim.lsp.buf.signature_help, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>D", vim.lsp.buf.type_definition, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", vim.lsp.buf.rename, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, { "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", vim.lsp.buf.format, opts)
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format{async=true}' ]])
+local function lsp_keymaps()
+	local keymap = vim.keymap.set
+	keymap("n", "<leader>le", vim.diagnostic.setloclist)
+
+	vim.api.nvim_create_autocmd("LspAttach", {
+		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+		callback = function(ev)
+			-- Enable completion triggered by <c-x><c-o>
+			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+			local opts = { buffer = ev.buf, noremap = true, silent = true }
+			keymap("n", "gr", vim.lsp.buf.references, opts)
+			keymap("n", "gD", vim.lsp.buf.declaration, opts)
+			keymap("n", "gd", vim.lsp.buf.definition, opts)
+			keymap("n", "gi", vim.lsp.buf.implementation, opts)
+			keymap("n", "K", vim.lsp.buf.hover, opts)
+			keymap("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+			keymap("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+			keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+			keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+			keymap("n", "<leader>f", function()
+				vim.lsp.buf.format({ async = true })
+			end, opts)
+		end,
+	})
 end
 
-M.on_attach = function(_, bufnr)
-	lsp_keymaps(bufnr)
+M.on_attach = function()
+	lsp_keymaps()
 end
 
 return M
