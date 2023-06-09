@@ -165,4 +165,12 @@ require("lazy").setup({
 		version = "*",
 		dependencies = { "nvim-tree/nvim-web-devicons", "lewis6991/gitsigns.nvim" },
 	},
+
+	-- Pomodoro
+	{
+		"cmpadden/pomodoro.nvim",
+		config = function()
+			require("pomodoro").setup()
+		end,
+	},
 })
