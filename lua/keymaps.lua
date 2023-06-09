@@ -1,23 +1,23 @@
 local keymap = vim.keymap.set
-
--- paste "'"
-keymap("i", "<C-v>", "'", { silent = true })
-
--- Move current line / block with Alt-j/k like vscode.
-keymap("n", "<A-j>", ":m .+1<CR>==", { silent = true })
-keymap("n", "<A-k>", ":m .-2<CR>==", { silent = true })
-keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", { silent = true })
-keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", { silent = true })
-keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
-keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
-
--- Nvim.Tree
-keymap("n", "<C-B>", ":NvimTreeToggle<CR>", { silent = true })
-keymap("i", "<C-B>", "<C-c>:NvimTreeToggle<CR>", { silent = true })
+local opts = {
+	silent = true,
+	noremap = true,
+}
 
 -- save
-keymap("n", "<leader>w", ":w<CR>", { silent = true })
-keymap("i", "<C-s>", "<C-c>:w<CR>", { silent = true })
+keymap("n", "<leader>w", ":w<CR>", opts)
+keymap("i", "<C-s>", "<C-c>:w<CR>", opts)
+
+-- Move current line / block with Alt-j/k like vscode.
+keymap("n", "<A-j>", ":m .+1<CR>==", opts)
+keymap("n", "<A-k>", ":m .-2<CR>==", opts)
+keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", opts)
+keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- Nvim.Tree
+keymap({ "n", "i" }, "<C-B>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 local builtin = require("telescope.builtin")
