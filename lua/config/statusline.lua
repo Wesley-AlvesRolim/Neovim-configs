@@ -1,16 +1,6 @@
 local icons = require("config.icons")
 local MiniStatusline = require("mini.statusline")
-
-local diagnostic_levels = {
-	{ id = vim.diagnostic.severity.ERROR, sign = icons.diagnostics.Error },
-	{ id = vim.diagnostic.severity.WARN, sign = icons.diagnostics.Warn },
-	{ id = vim.diagnostic.severity.INFO, sign = icons.diagnostics.Info },
-	{ id = vim.diagnostic.severity.HINT, sign = icons.diagnostics.Hint },
-}
-
-local get_diagnostic_count = function(id)
-	return #vim.diagnostic.get(0, { severity = id })
-end
+local M = {}
 
 MiniStatusline.setup()
 
@@ -22,8 +12,8 @@ MiniStatusline.section_diagnostics = function(args)
 	end
 
 	local t = {}
-	for _, level in ipairs(diagnostic_levels) do
-		local n = get_diagnostic_count(level.id)
+	for _, level in ipairs(M.diagnostic_levels) do
+		local n = M.get_diagnostic_count(level.id)
 		if n > 0 then
 			table.insert(t, string.format(" %s%s", level.sign, n))
 		end
@@ -37,7 +27,22 @@ MiniStatusline.section_diagnostics = function(args)
 end
 
 MiniStatusline.section_location = function()
-	return "%l│%2v"
+	return M.line_percent() .. "%|%2l│%2v"
 end
 
 vim.cmd("set laststatus=3")
+
+M.diagnostic_levels = {
+	{ id = vim.diagnostic.severity.ERROR, sign = icons.diagnostics.Error },
+	{ id = vim.diagnostic.severity.WARN, sign = icons.diagnostics.Warn },
+	{ id = vim.diagnostic.severity.INFO, sign = icons.diagnostics.Info },
+	{ id = vim.diagnostic.severity.HINT, sign = icons.diagnostics.Hint },
+}
+
+M.get_diagnostic_count = function(id)
+	return #vim.diagnostic.get(0, { severity = id })
+end
+
+M.line_percent = function()
+	return string.format("%s%s", math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")), "%")
+end
