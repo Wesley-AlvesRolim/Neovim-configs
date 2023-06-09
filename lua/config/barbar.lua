@@ -38,9 +38,9 @@ require("bufferline").setup({
 			[vim.diagnostic.severity.HINT] = { enabled = true, icon = icons.diagnostics.Hint },
 		},
 		gitsigns = {
-			added = { enabled = true, icon = icons.git.add.text },
-			changed = { enabled = true, icon = icons.git.change.text },
-			deleted = { enabled = true, icon = icons.git.delete.text },
+			added = { enabled = false, icon = icons.git.add.text },
+			changed = { enabled = false, icon = icons.git.change.text },
+			deleted = { enabled = false, icon = icons.git.delete.text },
 		},
 		filetype = {
 			-- Sets the icon's highlight group.

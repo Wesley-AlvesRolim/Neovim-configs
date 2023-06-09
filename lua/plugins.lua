@@ -159,4 +159,10 @@ require("lazy").setup({
 			end
 		end,
 	},
+
+	{
+		"echasnovski/mini.statusline",
+		version = "*",
+		dependencies = { "nvim-tree/nvim-web-devicons", "lewis6991/gitsigns.nvim" },
+	},
 })
