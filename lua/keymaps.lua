@@ -5,6 +5,9 @@ local opts = {
 	noremap = true,
 }
 
+-- quit
+keymap("n", "<leader>q", ":q<CR>", opts)
+
 -- save
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("i", "<C-s>", "<C-c>:w<CR>", opts)
@@ -16,6 +19,10 @@ keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", opts)
 keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- Window swap
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Nvim.Tree
 keymap({ "n", "i" }, "<C-B>", ":NvimTreeToggle<CR>", opts)
