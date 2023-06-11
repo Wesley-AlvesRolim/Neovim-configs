@@ -9,8 +9,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 local shared_config_path = jdtls_path .. "/config_linux"
 local path_to_plugins = jdtls_path .. "/plugins/"
+local lombok_path = jdtls_path .. "/lombok.jar"
 local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
-local lombok_path = path_to_plugins .. "lombok.jar"
 
 local cache_dir = vim.fs.normalize("~/.cache/jdtls")
 local config_dir = cache_dir .. "/config"
