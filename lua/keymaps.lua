@@ -21,8 +21,10 @@ keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Window swap
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-H>", "<C-w>h", opts)
+keymap("n", "<C-L>", "<C-w>l", opts)
+keymap("n", "<C-J>", "<C-w>j", opts)
+keymap("n", "<C-K>", "<C-w>k", opts)
 
 -- Nvim.Tree
 keymap({ "n", "i" }, "<C-B>", ":NvimTreeToggle<CR>", opts)
