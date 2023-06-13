@@ -1,40 +1,39 @@
+local utils = require("utils")
+
+local formatters = {
+	"prettierd",
+	"stylua",
+}
+
+local linters = {
+	"eslint_d",
+	"markdownlint",
+}
+
+local mason_sources = {}
+mason_sources = utils.insert_item_list_to_table(mason_sources, formatters)
+mason_sources = utils.insert_item_list_to_table(mason_sources, linters)
+
 require("mason-null-ls").setup({
 	automatic_setup = true,
-	ensure_installed = {
-		-- formatters
-		"prettierd",
-		"stylua",
-		"google-java-format",
-
-		-- linters
-		"eslint_d",
-		"markdownlint",
-		"editorconfig-checker",
-
-		-- debuggers
-	},
+	ensure_installed = mason_sources,
 	automatic_installation = true,
 })
 
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+local sources = {}
 
-null_ls.setup({
-	sources = {
-		-- formatters
-		formatting.prettierd,
-		formatting.stylua,
-		formatting.google_java_format,
+sources = utils.merge(sources, {
+	diagnostics.editorconfig_checker.with({
+		command = "editorconfig-checker",
+	}),
 
-		-- diagnostics
-		diagnostics.eslint_d,
-		diagnostics.markdownlint,
-		diagnostics.editorconfig_checker.with({
-			command = "editorconfig-checker",
-		}),
-
-		-- snippets support
-		null_ls.builtins.completion.luasnip,
-	},
+	-- snippets support
+	null_ls.builtins.completion.luasnip,
 })
+sources = utils.merge(sources, utils.insert_item_from_table_to_table(sources, formatting, formatters))
+sources = utils.merge(sources, utils.insert_item_from_table_to_table(sources, diagnostics, linters))
+
+null_ls.setup({ sources = sources })
