@@ -21,6 +21,12 @@ nvim
   sudo apt install ripgrep
   ```
 
+- Java Format Style
+
+  ```sh
+  curl -i https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml -o ~/.local/share/nvim/intellij-java-google-style.xml
+  ```
+
 ## Fonts
 
 - [https://github.com/terroo/fonts](https://github.com/terroo/fonts)

@@ -10,7 +10,7 @@ local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 local shared_config_path = jdtls_path .. "/config_linux"
 local path_to_plugins = jdtls_path .. "/plugins/"
 local lombok_path = jdtls_path .. "/lombok.jar"
-local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
+local path_to_jar = vim.fn.glob(path_to_plugins .. "org.eclipse.equinox.launcher_*.jar")
 
 local cache_dir = vim.fs.normalize("~/.cache/jdtls")
 local config_dir = cache_dir .. "/config"
@@ -44,6 +44,7 @@ local config = {
 		"java.base/java.lang=ALL-UNNAMED",
 
 		"-javaagent:" .. lombok_path,
+		"-Xbootclasspath/a:" .. lombok_path,
 		"-jar",
 		path_to_jar,
 		"-configuration",
@@ -53,6 +54,19 @@ local config = {
 	},
 	root_dir = root_dir,
 	capabilities = capabilities,
+
+	settings = {
+		java = {
+			format = {
+				enabled = true,
+				settings = {
+					profile = "GoogleStyle",
+					-- source: https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml,
+					url = vim.fn.stdpath("data") .. "/intellij-java-google-style.xml",
+				},
+			},
+		},
+	},
 }
 
 jdtls.start_or_attach(config)
