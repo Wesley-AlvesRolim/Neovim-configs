@@ -44,7 +44,7 @@ require("lazy").setup({
 
 	-- theme
 	{
-		"Mofiqul/dracula.nvim",
+		"kvrohit/mellow.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -54,7 +54,7 @@ require("lazy").setup({
 				endif
 			]])
 			vim.cmd([[ syntax enable ]])
-			vim.cmd([[ colorscheme dracula ]])
+			vim.cmd([[ colorscheme mellow ]])
 		end,
 	},
 
@@ -113,6 +113,7 @@ require("lazy").setup({
 
 	-- LSP
 	{ "neovim/nvim-lspconfig" },
+
 	{
 		"https://git.sr.ht/~nedia/auto-format.nvim",
 		event = "BufWinEnter",
@@ -120,6 +121,7 @@ require("lazy").setup({
 			require("auto-format").setup()
 		end,
 	},
+
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -139,14 +141,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- Search and replace
-	{
-		"roobert/search-replace.nvim",
-		config = function()
-			require("search-replace").setup()
-		end,
-	},
-
 	-- Notifier
 	{
 		"vigoux/notifier.nvim",
@@ -154,12 +148,10 @@ require("lazy").setup({
 			require("notifier").setup({
 				components = { "nvim", "lsp", "mason", "null-ls", "treesitter" },
 			})
-			print = function(message, level, opt)
-				return vim.notify(message, level, opt)
-			end
 		end,
 	},
 
+	-- Statusline
 	{
 		"echasnovski/mini.statusline",
 		version = "*",
