@@ -4,6 +4,10 @@ require("nvim-treesitter.configs").setup({
 	auto_install = true,
 	ignore_install = { "javascript", "css", "scss" },
 
+	autotag = {
+		enable = true,
+	},
+
 	indent = {
 		enable = true,
 	},
@@ -20,7 +24,13 @@ require("nvim-treesitter.configs").setup({
 
 	highlight = {
 		enable = true,
-		disable = { "css", "scss" },
+		disable = { "html", "css", "scss" },
 		additional_vim_regex_highlighting = false,
+	},
+
+	rainbow = {
+		enable = true,
+		extended_mode = true,
+		x_file_lines = nil,
 	},
 })

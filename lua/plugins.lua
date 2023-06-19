@@ -17,9 +17,7 @@ require("lazy").setup({
 	-- Comment
 	{
 		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
+		config = true,
 	},
 
 	-- Auto close ( [ {
@@ -30,56 +28,26 @@ require("lazy").setup({
 		end,
 	},
 
-	-- Auto tag
-	{
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				autotag = {
-					enable = true,
-				},
-			})
-		end,
-	},
-
 	-- theme
 	{
 		"kvrohit/mellow.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
-		config = function()
-			vim.cmd([[
-				if (has("termguicolors"))
-				set termguicolors
-				endif
-			]])
-			vim.cmd([[ syntax enable ]])
-			vim.cmd([[ colorscheme mellow ]])
-		end,
 	},
 
 	-- Rainbow brackets
 	{
 		"mrjones2014/nvim-ts-rainbow",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-					x_file_lines = nil,
-				},
-			})
-		end,
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		lazy = false,
 	},
 
-	-- these two plugins will add highlighting and indenting to JSX and TSX files.
-	{ "pangloss/vim-javascript" },
-
-	{ "neoclide/vim-jsx-improve" },
-
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+
+	-- Auto tag
+	{
+		"windwp/nvim-ts-autotag",
+	},
 
 	-- File explorer tree CTRL + B
 	{
@@ -117,9 +85,7 @@ require("lazy").setup({
 	{
 		"https://git.sr.ht/~nedia/auto-format.nvim",
 		event = "BufWinEnter",
-		config = function()
-			require("auto-format").setup()
-		end,
+		config = true,
 	},
 
 	{
@@ -161,8 +127,6 @@ require("lazy").setup({
 	-- Pomodoro
 	{
 		"cmpadden/pomodoro.nvim",
-		config = function()
-			require("pomodoro").setup()
-		end,
+		config = true,
 	},
 })
