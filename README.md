@@ -10,7 +10,7 @@
 ```sh
 rm -rf ~/.config/nvim
 git clone https://github.com/Wesley-AlvesRolim/Neovim-configs.git ~/.config/nvim
-nvim
+nvim --headless "+Lazy! sync" +qa
 ```
 
 ## Dependencies
@@ -67,8 +67,6 @@ nvim
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [nvim-ts-rainbow](https://github.com/mrjones2014/nvim-ts-rainbow)
-- [vim-javascript](https://github.com/pangloss/vim-javascript)
-- [vim-jsx-improve](https://github.com/neoclide/vim-jsx-improve)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [notifier.nvim](https://github.com/vigoux/notifier.nvim)
 - [pomodoro](https://github.com/cmpadden/pomodoro.nvim)
