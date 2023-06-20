@@ -13,6 +13,5 @@ local servers = {
 local configured_servers = { "jdtls" }
 
 require("lsp.cmp")
-require("lsp.mason").setup(servers)
-require("lsp.configs").setup(servers, configured_servers)
+require("lsp.mason").setup(servers, configured_servers)
 require("lsp.handlers").setup()

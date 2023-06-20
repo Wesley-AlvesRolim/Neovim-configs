@@ -15,6 +15,12 @@ function M.merge(t1, t2)
 	return t1
 end
 
+function M.is_configured_servers(server_to_compare, configured_servers)
+	for _, configured_server in ipairs(configured_servers) do
+		return configured_server == server_to_compare
+	end
+end
+
 function M.insert_item_list_to_table(source_table, list)
 	local source_table_copy = source_table or {}
 	for _, item in ipairs(list) do

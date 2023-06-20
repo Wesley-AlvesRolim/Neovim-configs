@@ -1,5 +1,6 @@
 local M = {}
 local icons = require("config.icons")
+local merge = require("utils").merge
 
 M.setup = function()
 	local signs = {
@@ -47,18 +48,18 @@ local function lsp_keymaps()
 			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
 			local opts = { buffer = ev.buf, noremap = true, silent = true }
-			keymap("n", "gr", vim.lsp.buf.references, opts)
-			keymap("n", "gD", vim.lsp.buf.declaration, opts)
-			keymap("n", "gd", vim.lsp.buf.definition, opts)
-			keymap("n", "gi", vim.lsp.buf.implementation, opts)
-			keymap("n", "K", vim.lsp.buf.hover, opts)
-			keymap("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-			keymap("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-			keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-			keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+			keymap("n", "gr", vim.lsp.buf.references, merge(opts, { desc = "[G]oto [R]eferences" }))
+			keymap("n", "gD", vim.lsp.buf.declaration, merge(opts, { desc = "[G]oto [D]eclaration" }))
+			keymap("n", "gd", vim.lsp.buf.definition, merge(opts, { desc = "[G]oto [D]efinition" }))
+			keymap("n", "gi", vim.lsp.buf.implementation, merge(opts, { desc = "[G]oto [I]mplementation" }))
+			keymap("n", "K", vim.lsp.buf.hover, merge(opts, { desc = "[K]eyboard hover" }))
+			keymap("n", "<C-k>", vim.lsp.buf.signature_help, merge(opts, { desc = "[S]ignature [H]elp" }))
+			keymap("n", "<leader>D", vim.lsp.buf.type_definition, merge(opts, { desc = "[D]efinition Type" }))
+			keymap("n", "<leader>rn", vim.lsp.buf.rename, merge(opts, { desc = "[R]e[n]ame" }))
+			keymap("n", "<leader>ca", vim.lsp.buf.code_action, merge(opts, { desc = "[C]ode [A]ction" }))
 			keymap("n", "<leader>f", function()
 				vim.lsp.buf.format({ async = true })
-			end, opts)
+			end, merge(opts, { desc = "[F]ormat Request" }))
 		end,
 	})
 end
@@ -66,5 +67,10 @@ end
 M.on_attach = function()
 	lsp_keymaps()
 end
+
+M.opts = {
+	on_attach = M.on_attach,
+	capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
 
 return M
