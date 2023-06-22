@@ -2,6 +2,7 @@ local utils = require("utils")
 
 local formatters = {
 	"prettierd",
+	"eslint_d",
 	"stylua",
 }
 
