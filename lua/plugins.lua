@@ -29,11 +29,7 @@ require("lazy").setup({
 	},
 
 	-- theme
-	{
-		"kvrohit/mellow.nvim",
-		lazy = true,
-		priority = 1000,
-	},
+	{ "sam4llis/nvim-tundra", lazy = true, priority = 1000, config = true },
 
 	-- Rainbow brackets
 	{
@@ -73,11 +69,19 @@ require("lazy").setup({
 	-- Null ls
 	{ "williamboman/mason.nvim", build = ":MasonUpdate" },
 
-	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = { "williamboman/mason.nvim" },
+	},
 
-	{ "jose-elias-alvarez/null-ls.nvim" },
-
-	{ "jay-babu/mason-null-ls.nvim" },
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"jose-elias-alvarez/null-ls.nvim",
+		},
+	},
 
 	-- LSP
 	{ "neovim/nvim-lspconfig" },

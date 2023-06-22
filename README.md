@@ -41,7 +41,7 @@ nvim --headless "+Lazy! sync" +qa
 - [plenary](https://github.com/nvim-lua/plenary.nvim)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [theme](https://github.com/kvrohit/mellow.nvim)
+- [theme](https://github.com/sam4llis/nvim-tundra)
 - [bufferline](https://github.com/romgrk/barbar.nvim)
 - [statusline](https://github.com/echasnovski/mini.statusline)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)

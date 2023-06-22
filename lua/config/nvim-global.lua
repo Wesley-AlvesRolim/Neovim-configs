@@ -8,4 +8,4 @@ vim.o.scrolloff = 4
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 vim.opt.syntax = "on"
-vim.cmd([[colorscheme mellow]])
+vim.cmd([[colorscheme tundra]])
