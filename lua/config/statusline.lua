@@ -2,7 +2,9 @@ local icons = require("config.icons")
 local MiniStatusline = require("mini.statusline")
 local M = {}
 
-MiniStatusline.setup()
+MiniStatusline.setup({
+	set_vim_settings = false,
+})
 
 MiniStatusline.section_diagnostics = function(args)
 	local hasnt_attached_client = next(vim.lsp.buf_get_clients()) == nil
@@ -27,10 +29,8 @@ MiniStatusline.section_diagnostics = function(args)
 end
 
 MiniStatusline.section_location = function()
-	return M.line_percent() .. "%|%2l│%2v"
+	return "%P|%2l│%2v"
 end
-
-vim.cmd("set laststatus=3")
 
 M.diagnostic_levels = {
 	{ id = vim.diagnostic.severity.ERROR, sign = icons.diagnostics.Error },
@@ -41,8 +41,4 @@ M.diagnostic_levels = {
 
 M.get_diagnostic_count = function(id)
 	return #vim.diagnostic.get(0, { severity = id })
-end
-
-M.line_percent = function()
-	return string.format("%s%s", math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")), "%")
 end
