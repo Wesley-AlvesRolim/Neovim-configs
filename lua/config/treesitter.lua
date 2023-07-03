@@ -27,10 +27,4 @@ require("nvim-treesitter.configs").setup({
 		disable = { "html", "css", "scss" },
 		additional_vim_regex_highlighting = false,
 	},
-
-	rainbow = {
-		enable = true,
-		extended_mode = true,
-		x_file_lines = nil,
-	},
 })

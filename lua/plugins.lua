@@ -20,6 +20,17 @@ require("lazy").setup({
 		config = true,
 	},
 
+	-- theme
+	{ "sam4llis/nvim-tundra", lazy = false, priority = 1000, config = true },
+
+	-- Surround
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = true,
+	},
+
 	-- Auto close ( [ {
 	{
 		"windwp/nvim-autopairs",
@@ -28,16 +39,7 @@ require("lazy").setup({
 		end,
 	},
 
-	-- theme
-	{ "sam4llis/nvim-tundra", lazy = true, priority = 1000, config = true },
-
-	-- Rainbow brackets
-	{
-		"mrjones2014/nvim-ts-rainbow",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		lazy = false,
-	},
-
+	-- Treesitter
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
 	-- Auto tag
