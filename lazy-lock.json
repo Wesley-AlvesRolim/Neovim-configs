@@ -1,7 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "176e85eeb63f1a5970d6b88f1725039d85ca0055" },
   "LuaSnip": { "branch": "master", "commit": "a658ae2906344a1d2b9c507738e585cf68e685c7" },
-  "auto-format.nvim": { "branch": "main", "commit": "13c6bfe340520463643838e947639fc5efd27433" },
   "barbar.nvim": { "branch": "master", "commit": "8cca17ea0ced3ba564e5da972a25600edafe7d7b" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-calc": { "branch": "main", "commit": "50792f34a628ea6eb31d2c90e8df174671e4e7a0" },

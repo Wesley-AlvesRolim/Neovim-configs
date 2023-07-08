@@ -1,6 +1,5 @@
 require("config.barbar")
 require("config.git-signs")
-require("config.null-ls")
 require("config.nvim-tree")
 require("config.snippets")
 require("config.statusline")
