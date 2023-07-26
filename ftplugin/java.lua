@@ -4,7 +4,7 @@ if not jdtls_ok then
 	return
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local opts = require("lsp.handlers").opts
 
 local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 local shared_config_path = jdtls_path .. "/config_linux"
@@ -44,7 +44,7 @@ local config = {
 		"java.base/java.lang=ALL-UNNAMED",
 
 		"-javaagent:" .. lombok_path,
-		"-Xbootclasspath/a:" .. lombok_path,
+		-- "-Xbootclasspath/a:" .. lombok_path,
 		"-jar",
 		path_to_jar,
 		"-configuration",
@@ -53,7 +53,8 @@ local config = {
 		workspace_dir,
 	},
 	root_dir = root_dir,
-	capabilities = capabilities,
+	capabilities = opts.capabilities,
+	on_attach = opts.on_attach,
 
 	settings = {
 		java = {
