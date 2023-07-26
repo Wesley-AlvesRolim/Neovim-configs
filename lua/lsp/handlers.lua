@@ -5,9 +5,9 @@ local merge = require("utils").merge
 M.setup = function()
 	local signs = {
 		{ name = "DiagnosticSignError", text = icons.diagnostics.Error },
-		{ name = "DiagnosticSignWarn", text = icons.diagnostics.Warn },
-		{ name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-		{ name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
+		{ name = "DiagnosticSignWarn",  text = icons.diagnostics.Warn },
+		{ name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+		{ name = "DiagnosticSignInfo",  text = icons.diagnostics.Info },
 	}
 
 	for _, sign in ipairs(signs) do

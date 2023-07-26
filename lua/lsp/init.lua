@@ -13,6 +13,8 @@ local servers = {
 
 local configured_servers = { "jdtls", "omnisharp_mono" }
 
+require("lspconfig").gdscript.setup(require("lsp.handlers").opts)
+
 require("lsp.cmp")
 require("lsp.mason").setup(servers, configured_servers)
 require("lsp.handlers").setup()

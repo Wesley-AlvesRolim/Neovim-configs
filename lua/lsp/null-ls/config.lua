@@ -15,6 +15,8 @@ function M.setup(source_list)
 		diagnostics.eslint_d.with(source_config.eslint_d),
 		code_actions.eslint_d.with(source_config.eslint_d),
 
+		formatting.gdformat.with(source_config.gdformat),
+		diagnostics.gdlint.with(source_config.gdlint),
 		-- snippets support
 		null_ls.builtins.completion.luasnip,
 	})

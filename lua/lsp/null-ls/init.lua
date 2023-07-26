@@ -13,7 +13,7 @@ local supported_code_actions = {
 	"gitsigns",
 }
 
-local only_install = { "eslint_d" }
+local only_install = { "eslint_d", "gdtoolkit" }
 
 mason.setup({
 	formatters = formatters,
