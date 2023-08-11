@@ -1,6 +1,5 @@
-require("plugins")
 require("global")
-require("config/init")
+require("config/lazy")
+require("keymaps")
 require("lsp/init")
 require("lsp/null-ls/init")
-require("keymaps")

@@ -1,6 +1,0 @@
-require("config.barbar")
-require("config.git-signs")
-require("config.nvim-tree")
-require("config.snippets")
-require("config.statusline")
-require("config.treesitter")

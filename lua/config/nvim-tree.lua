@@ -1,4 +1,37 @@
-require("nvim-tree").setup({
+local function open_nvim_tree(data)
+	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+	local directory = vim.fn.isdirectory(data.file) == 1
+
+	if not no_name and not directory then
+		return
+	end
+
+	if directory then
+		vim.cmd.cd(data.file)
+	end
+
+	require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+local M = {}
+
+M.icons_configs = {
+	override = {
+		zsh = {
+			icon = "",
+			color = "#428850",
+			cterm_color = "65",
+			name = "Zsh",
+		},
+	},
+	default = true,
+}
+
+M.tree_configs = {
+
 	sort_by = "case_sensitive",
 	view = {
 		adaptive_size = true,
@@ -65,43 +98,6 @@ require("nvim-tree").setup({
 		dotfiles = false,
 		custom = { ".git", "*.env*", "node_modules" },
 	},
-})
+}
 
-require("nvim-web-devicons").setup({
-	-- your personnal icons can go here (to override)
-	-- you can specify color or cterm_color instead of specifying both of them
-	-- DevIcon will be appended to `name`
-	override = {
-		zsh = {
-			icon = "",
-			color = "#428850",
-			cterm_color = "65",
-			name = "Zsh",
-		},
-	},
-	-- globally enable default icons (default to false)
-	-- will get overriden by `get_icons` option
-	default = true,
-})
-
-local function open_nvim_tree(data)
-	-- buffer is a [No Name]
-	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-
-	-- buffer is a directory
-	local directory = vim.fn.isdirectory(data.file) == 1
-
-	if not no_name and not directory then
-		return
-	end
-
-	-- change to the directory
-	if directory then
-		vim.cmd.cd(data.file)
-	end
-
-	-- open the tree
-	require("nvim-tree.api").tree.open()
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+return M

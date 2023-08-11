@@ -9,4 +9,3 @@ vim.o.laststatus = 3
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 vim.opt.syntax = "on"
-vim.cmd.colorscheme("tundra")
