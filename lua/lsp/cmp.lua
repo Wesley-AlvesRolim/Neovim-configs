@@ -17,7 +17,6 @@ local configs = {
 				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				luasnip = "[LuaSnip]",
-				nvim_lua = "[Lua]",
 				path = "[Path]",
 				emoji = "[Emoji]",
 				neorg = "[Neorg]",
@@ -61,11 +60,6 @@ local configs = {
 		},
 		{
 			name = "nvim_lsp",
-			priority = 100,
-			group_index = 1,
-		},
-		{
-			name = "nvim_lua",
 			priority = 100,
 			group_index = 1,
 		},

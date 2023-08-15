@@ -1,20 +1,18 @@
 return {
+	{
+		"folke/neodev.nvim",
+		event = "BufEnter",
+		filetype = "lua",
+		config = function()
+			require("neodev").setup()
+		end,
+	},
+
 	-- Comment
 	{
 		"numToStr/Comment.nvim",
 		event = "VeryLazy",
 		config = true,
-	},
-
-	-- theme
-	{
-		"sam4llis/nvim-tundra",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("nvim-tundra").setup()
-			vim.cmd.colorscheme("tundra")
-		end,
 	},
 
 	-- Surround
