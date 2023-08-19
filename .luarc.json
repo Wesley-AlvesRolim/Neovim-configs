@@ -4,5 +4,6 @@
 	],
 	"diagnostics.disable": [
 		"different-requires"
-	]
+	],
+    "workspace.checkThirdParty": false
 }

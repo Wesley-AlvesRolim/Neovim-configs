@@ -1,10 +1,10 @@
-local null_ls = require("null-ls")
-local utils = require("utils")
 local M = {}
-
 local mason_sources = {}
 
 function M.setup(source_list)
+	local null_ls = require("null-ls")
+	local utils = require("utils")
+
 	mason_sources = utils.insert_item_list_to_table(mason_sources, source_list.formatters)
 	mason_sources = utils.insert_item_list_to_table(mason_sources, source_list.linters)
 	mason_sources = utils.insert_item_list_to_table(mason_sources, source_list.only_install)
@@ -16,8 +16,8 @@ function M.setup(source_list)
 		handlers = {
 			function(source, types)
 				if
-						not null_ls.is_registered(source)
-						and not utils.is_configured_servers(source, source_list.only_install)
+					not null_ls.is_registered(source)
+					and not utils.is_configured_servers(source, source_list.only_install)
 				then
 					vim.tbl_map(function(type)
 						null_ls.register(null_ls.builtins[type][source])

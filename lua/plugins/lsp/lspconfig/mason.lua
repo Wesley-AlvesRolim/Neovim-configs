@@ -1,7 +1,7 @@
 local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 local is_configured_servers = require("utils").is_configured_servers
-local configs = require("lsp.handlers")
+local configs = require("plugins.lsp.lspconfig.handlers")
 
 local M = {}
 

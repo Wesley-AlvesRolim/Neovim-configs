@@ -36,5 +36,6 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason.nvim",
 		},
+		config = require("plugins.lsp.lspconfig").setup,
 	},
 }
