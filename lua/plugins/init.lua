@@ -1,13 +1,4 @@
 return {
-	{
-		"folke/neodev.nvim",
-		event = "BufEnter",
-		filetype = "lua",
-		config = function()
-			require("neodev").setup()
-		end,
-	},
-
 	-- Comment
 	{
 		"numToStr/Comment.nvim",
@@ -40,8 +31,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build =
-				"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 				config = function()
 					require("telescope").load_extension("fzf")
 				end,
@@ -49,36 +39,8 @@ return {
 		},
 	},
 
-	-- Git
-	{ "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" }, config = require("config.git-signs").setup },
-
 	-- Code Copilot
 	{ "Exafunction/codeium.vim", event = "VimEnter" },
-
-	-- Java
-	{ "mfussenegger/nvim-jdtls" },
-
-	-- LSP
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
-			"williamboman/mason.nvim",
-		},
-	},
-
-	-- Notifier
-	{
-		"vigoux/notifier.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("notifier").setup({
-				components = { "nvim", "lsp", "mason", "null-ls", "treesitter" },
-			})
-		end,
-	},
 
 	-- Tmux integration
 	{

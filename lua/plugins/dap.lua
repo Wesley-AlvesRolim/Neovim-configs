@@ -1,11 +1,6 @@
 local M = {
 	"mfussenegger/nvim-dap",
-	ft = {
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-	},
+	ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		"theHamsta/nvim-dap-virtual-text",
@@ -13,11 +8,29 @@ local M = {
 	},
 	-- stylua: ignore
 	keys = {
-		{ "<F5>",  function() require("dap").continue() end,  desc = "DAP: Continue",  mode = "n" },
-		{ "<F10>", function() require("dap").step_over() end, desc = "DAP: Step Over", mode = "n" },
-		{ "<F11>", function() require("dap").step_into() end, desc = "DAP: Step Into", mode = "n" },
-		{ "<F12>", function() require("dap").step_out() end,  desc = "DAP: Step Out",  mode = "n" },
-	},
+		{
+			"<F5>",
+			function() require("dap").continue() end,
+			desc = "DAP: Continue",
+			mode = "n"
+		}, {
+		"<F10>",
+		function() require("dap").step_over() end,
+		desc = "DAP: Step Over",
+		mode = "n"
+	}, {
+		"<F11>",
+		function() require("dap").step_into() end,
+		desc = "DAP: Step Into",
+		mode = "n"
+	}, {
+		"<F12>",
+		function() require("dap").step_out() end,
+		desc = "DAP: Step Out",
+		mode = "n"
+	}
+	}
+,
 }
 
 M.config = function()
@@ -34,12 +47,19 @@ M.config = function()
 	require("nvim-dap-repl-highlights").setup()
 
 	vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "", linehl = "", numhl = "" })
-	vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapBreakpointRejected", {
+		text = " ",
+		texthl = "DiagnosticError",
+		linehl = "",
+		numhl = "",
+	})
 	vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "", linehl = "", numhl = "" })
-	vim.fn.sign_define(
-		"DapStopped",
-		{ text = " ", texthl = "DiagnosticWarn", linehl = "DapStoppedLine", numhl = "DapStoppedLine" }
-	)
+	vim.fn.sign_define("DapStopped", {
+		text = " ",
+		texthl = "DiagnosticWarn",
+		linehl = "DapStoppedLine",
+		numhl = "DapStoppedLine",
+	})
 	vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "", linehl = "", numhl = "" })
 
 	-- dap.set_log_level("TRACE")
@@ -68,19 +88,25 @@ M.config = function()
 	dap.adapters.firefox = {
 		type = "executable",
 		command = "node",
-		args = { vim.fn.stdpath("data") .. "/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js" },
+		args = {
+			vim.fn.stdpath("data") .. "/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js",
+		},
 	}
 
 	dap.adapters.node2 = {
 		type = "executable",
 		command = "node",
-		args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
+		args = {
+			vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js",
+		},
 	}
 
 	dap.adapters.chrome = {
 		type = "executable",
 		command = "node",
-		args = { vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js" },
+		args = {
+			vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js",
+		},
 	}
 
 	-- TODO: not working
@@ -122,9 +148,7 @@ M.config = function()
 			-- TODO - webRoot should be set directly to workspaceFolder
 			webRoot = "${workspaceFolder}/src/build",
 			url = "http://localhost:3000",
-		},
-
-		-- Not tested configs yet 🙀
+		}, -- Not tested configs yet 🙀
 		{
 			name = "Nope - Node launch file",
 			type = "node2",
@@ -175,10 +199,7 @@ M.config = function()
 			name = "Nope - Node - Debug Jest Tests with pwa-node",
 			-- trace = true, -- include debugger info
 			runtimeExecutable = "node",
-			runtimeArgs = {
-				"./node_modules/jest/bin/jest.js",
-				"--runInBand",
-			},
+			runtimeArgs = { "./node_modules/jest/bin/jest.js", "--runInBand" },
 			rootPath = "${workspaceFolder}",
 			cwd = "${workspaceFolder}",
 			console = "integratedTerminal",
