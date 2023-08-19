@@ -55,7 +55,6 @@ nvim --headless "+Lazy! sync" +qa
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 - [cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
 - [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
-- [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [mason](https://github.com/williamboman/mason.nvim)
@@ -69,6 +68,7 @@ nvim --headless "+Lazy! sync" +qa
 - [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [nvim-surround](https://github.com/kylechui/nvim-surround)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
@@ -77,5 +77,9 @@ nvim --headless "+Lazy! sync" +qa
 - [jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+- [neodev.nvim](https://github.com/folke/neodev.nvim)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [telescope-fzf-naive.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
+- [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim)
 
 ---
