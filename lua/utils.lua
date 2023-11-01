@@ -16,8 +16,12 @@ function M.merge(t1, t2)
 end
 
 function M.is_configured_servers(server_to_compare, configured_servers)
-	for _, configured_server in ipairs(configured_servers) do
-		return configured_server == server_to_compare
+	for index, configured_server in ipairs(configured_servers) do
+		if server_to_compare == configured_server then
+			return true
+		elseif index == #configured_servers then
+			return false
+		end
 	end
 end
 
