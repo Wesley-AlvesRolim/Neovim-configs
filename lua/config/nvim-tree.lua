@@ -26,6 +26,12 @@ M.icons_configs = {
 			cterm_color = "65",
 			name = "Zsh",
 		},
+		vue = {
+			icon = "",
+			color = "#00dc82",
+			cterm_color = "65",
+			name = "Vue",
+		},
 	},
 	default = true,
 }
