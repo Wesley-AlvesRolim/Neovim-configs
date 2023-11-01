@@ -11,10 +11,6 @@ function M.setup(source_list)
 	local code_actions = null_ls.builtins.code_actions
 
 	sources = utils.merge(sources, {
-		formatting.eslint_d.with(source_config.eslint_d),
-		diagnostics.eslint_d.with(source_config.eslint_d),
-		code_actions.eslint_d.with(source_config.eslint_d),
-
 		formatting.gdformat.with(source_config.gdformat),
 		diagnostics.gdlint.with(source_config.gdlint),
 		-- snippets support

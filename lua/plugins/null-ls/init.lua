@@ -1,7 +1,4 @@
-local formatters = {
-	"prettierd",
-	"stylua",
-}
+local formatters = {}
 
 local linters = {
 	"markdownlint",
@@ -11,7 +8,7 @@ local supported_code_actions = {
 	"gitsigns",
 }
 
-local only_install = { "eslint_d", "gdtoolkit" }
+local only_install = { "gdtoolkit" }
 
 return {
 	"jay-babu/mason-null-ls.nvim",
