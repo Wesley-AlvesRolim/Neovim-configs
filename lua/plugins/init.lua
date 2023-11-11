@@ -44,7 +44,7 @@ return {
 	},
 
 	-- Code Copilot
-	{ "Exafunction/codeium.vim", event = "VimEnter", cmd = "Codeium" },
+	{ "Exafunction/codeium.vim", lazy = true, cmd = "Codeium" },
 
 	-- Tmux integration
 	{
@@ -58,21 +58,21 @@ return {
 		cmd = "Presence",
 		lazy = true,
 		opts = {
-			neovim_image_text   = "The One True Text Editor",
-			main_image          = "neovim",
-			log_level           = nil,
-			debounce_timeout    = 10,
-			enable_line_number  = false,
-			blacklist           = {},
-			buttons             = true,
-			file_assets         = {},
-			show_time           = false,
+			neovim_image_text = "The One True Text Editor",
+			main_image = "neovim",
+			log_level = nil,
+			debounce_timeout = 10,
+			enable_line_number = false,
+			blacklist = {},
+			buttons = true,
+			file_assets = {},
+			show_time = false,
 
-			editing_text        = "Editing %s",
-			file_explorer_text  = "",
+			editing_text = "Editing %s",
+			file_explorer_text = "",
 			plugin_manager_text = "Managing plugins",
-			reading_text        = "Reading %s",
-			workspace_text      = "Working on %s",
-		}
-	}
+			reading_text = "Reading %s",
+			workspace_text = "Working on %s",
+		},
+	},
 }

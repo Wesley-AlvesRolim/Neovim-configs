@@ -1,4 +1,4 @@
-local opts = require("lsp.handlers").opts
+local opts = require("plugins.lsp.lspconfig.handlers").opts
 
 local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/bin/omnisharp-mono"
 
