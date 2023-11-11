@@ -54,11 +54,6 @@ local configs = {
 
 	sources = cmp.config.sources({
 		{
-			name = "nvim_lsp_signature_help",
-			priority = 100,
-			group_index = 1,
-		},
-		{
 			name = "nvim_lsp",
 			priority = 100,
 			group_index = 1,
@@ -90,6 +85,8 @@ local configs = {
 			group_index = 3,
 		},
 		{ name = "emoji" },
+		{name = "nvim_lsp_signature_help",
+},
 	}),
 }
 

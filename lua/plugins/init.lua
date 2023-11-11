@@ -44,7 +44,7 @@ return {
 	},
 
 	-- Code Copilot
-	{ "Exafunction/codeium.vim", event = "VimEnter", enabled = false },
+	{ "Exafunction/codeium.vim", event = "VimEnter", cmd = "Codeium" },
 
 	-- Tmux integration
 	{

@@ -19,6 +19,14 @@ M.formatters = {
 			"typescriptreact",
 		},
 	},
+	gdformat = {
+		command = vim.fn.stdpath("data") .. "/mason/bin/gdformat",
+		filetype = {
+			"gd",
+			"gdscript",
+			"gdscript3",
+		},
+	},
 }
 
 M.linters = {
@@ -35,6 +43,19 @@ M.linters = {
 			"typescriptreact",
 		},
 	},
+	gdlint = {
+		command = vim.fn.stdpath("data") .. "/mason/bin/gdlint",
+		filetype = {
+			"gd",
+			"gdscript",
+			"gdscript3",
+		},
+	},
+}
+
+M.alternative_package = {
+	gdformat = "gdtoolkit",
+	gdlint = "gdtoolkit",
 }
 
 return M
