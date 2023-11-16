@@ -21,6 +21,7 @@ return {
 		Constant = " ",
 		Constructor = "",
 		Copilot = " ",
+		Codeium = " ",
 		Enum = " ",
 		EnumMember = "",
 		Event = " ", --"",

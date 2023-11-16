@@ -15,6 +15,7 @@ local configs = {
 			-- Source
 			vim_item.menu = ({
 				buffer = "[Buffer]",
+				codeium = "[AI]",
 				nvim_lsp = "[LSP]",
 				luasnip = "[LuaSnip]",
 				path = "[Path]",
@@ -54,6 +55,11 @@ local configs = {
 
 	sources = cmp.config.sources({
 		{
+			name = "codeium",
+			group_index = 1,
+			priority = 100,
+		},
+		{
 			name = "nvim_lsp",
 			priority = 100,
 			group_index = 1,
@@ -85,8 +91,7 @@ local configs = {
 			group_index = 3,
 		},
 		{ name = "emoji" },
-		{name = "nvim_lsp_signature_help",
-},
+		{ name = "nvim_lsp_signature_help" },
 	}),
 }
 

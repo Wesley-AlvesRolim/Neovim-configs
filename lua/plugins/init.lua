@@ -44,7 +44,16 @@ return {
 	},
 
 	-- Code Copilot
-	{ "Exafunction/codeium.vim", lazy = true, cmd = "Codeium" },
+	{
+		"Exafunction/codeium.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		cmd = "Codeium",
+		build = ":Codeium Auth",
+		opts = {},
+	},
 
 	-- Tmux integration
 	{
