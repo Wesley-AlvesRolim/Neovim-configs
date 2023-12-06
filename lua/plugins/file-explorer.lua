@@ -2,7 +2,7 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	cmd = { "NvimTreeToggle" },
-	config = require("config.nvim-tree").tree_configs,
+	opts = require("config.nvim-tree").tree_configs,
 	lazy = false,
 	keys = {
 		{
