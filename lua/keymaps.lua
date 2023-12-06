@@ -18,7 +18,6 @@ keymap("n", "<leader>q", ":q<CR>", { desc = "[Q]uit" })
 
 -- save
 keymap("n", "<leader>w", ":w<CR>", { desc = "[W]rite" })
-keymap("i", "<C-s>", "<C-c>:w<CR>", { desc = "[S]ave" })
 
 -- Move current line / block with Alt-j/k like vscode.
 keymap("n", "<A-j>", ":m .+1<CR>==")
@@ -29,7 +28,7 @@ keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
 -- Nvim.Tree
-keymap({ "n", "i" }, "<C-B>", ":NvimTreeToggle<CR>")
+keymap({ "n" }, "<C-B>", ":NvimTreeToggle<CR>")
 
 -- Telescope
 local builtin = require("telescope.builtin")
