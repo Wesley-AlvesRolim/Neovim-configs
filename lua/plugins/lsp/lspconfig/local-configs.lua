@@ -11,7 +11,7 @@ M.tailwindcss = {
 
 M.tsserver = {
 	init_options = {
-		maxTsServerMemory = "1536",
+		maxTsServerMemory = "1024",
 	},
 }
 

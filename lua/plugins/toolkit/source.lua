@@ -17,6 +17,12 @@ M.formatters = {
 			"javascriptreact",
 			"typescript",
 			"typescriptreact",
+			"vue",
+			"html",
+			"css",
+			"json",
+			"jsonc",
+			"yaml",
 		},
 	},
 	gdformat = {
@@ -41,6 +47,7 @@ M.linters = {
 			"javascriptreact",
 			"typescript",
 			"typescriptreact",
+			"vue",
 		},
 	},
 	gdlint = {

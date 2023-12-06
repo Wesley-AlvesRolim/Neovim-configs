@@ -1,7 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-lint",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.toolkit.linter")
 		end,
@@ -39,6 +39,14 @@ return {
 				ensure_installed = ensure_installed,
 				auto_update = true,
 				run_on_start = true,
+			})
+
+			vim.api.nvim_create_autocmd({ "VimLeave" }, {
+				callback = function()
+					for _, tool in pairs(ensure_installed) do
+						os.execute("killall " .. tool)
+					end
+				end,
 			})
 		end,
 	},
