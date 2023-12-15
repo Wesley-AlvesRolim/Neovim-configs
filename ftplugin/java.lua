@@ -20,7 +20,7 @@ local lombok_path = jdtls_path .. "/lombok.jar"
 local path_to_jar = vim.fn.glob(path_to_plugins .. "org.eclipse.equinox.launcher_*.jar")
 
 local cache_dir = vim.fs.normalize("~/.cache/jdtls")
--- local config_dir = cache_dir .. "/config"
+local config_dir = cache_dir .. "/config"
 local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 local workspace_dir = cache_dir .. "/workspace/" .. project_name
 
@@ -53,8 +53,8 @@ local config = {
 		"-jar",
 		path_to_jar,
 		"-configuration",
-		-- config_dir,
-		shared_config_path,
+		config_dir,
+		-- shared_config_path,
 		"-data",
 		workspace_dir,
 	},
