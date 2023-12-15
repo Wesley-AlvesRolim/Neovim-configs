@@ -14,7 +14,7 @@ local servers = {
 
 local configured_servers = { "jdtls", "omnisharp_mono" }
 
-local local_configured_servers = { "tailwindcss", "tsserver" }
+local local_configured_servers = { "tailwindcss", "tsserver", "rust_analyzer" }
 
 M.setup = function()
 	require("lspconfig").gdscript.setup(require("plugins.lsp.lspconfig.handlers").opts)

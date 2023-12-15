@@ -11,6 +11,25 @@ return {
 	-- Java
 	{ "mfussenegger/nvim-jdtls" },
 
+	-- Rust
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		opts = {
+			tools = {
+				runnables = {
+					use_telescope = true,
+				},
+			},
+		},
+		config = function(_, opts)
+			local utils = require("utils")
+			require("rust-tools").setup(utils.merge(opts, {
+				server = require("plugins.lsp.lspconfig.local-configs").rust_analyzer,
+			}))
+		end,
+	},
+
 	-- LSP
 	{
 		"neovim/nvim-lspconfig",

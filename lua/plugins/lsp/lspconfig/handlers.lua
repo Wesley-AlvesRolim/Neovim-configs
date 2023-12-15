@@ -5,9 +5,9 @@ local merge = require("utils").merge
 M.setup = function()
 	local signs = {
 		{ name = "DiagnosticSignError", text = icons.diagnostics.Error },
-		{ name = "DiagnosticSignWarn",  text = icons.diagnostics.Warn },
-		{ name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-		{ name = "DiagnosticSignInfo",  text = icons.diagnostics.Info },
+		{ name = "DiagnosticSignWarn", text = icons.diagnostics.Warn },
+		{ name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+		{ name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
 	}
 
 	for _, sign in ipairs(signs) do
@@ -64,8 +64,31 @@ local function lsp_keymaps()
 	})
 end
 
-M.on_attach = function()
-	lsp_keymaps()
+local function lsp_keymaps_buf(buf)
+	local keymap = vim.keymap.set
+	keymap("n", "<leader>le", vim.diagnostic.setloclist)
+	vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+	local opts = { buffer = buf, noremap = true, silent = true }
+	keymap("n", "gr", vim.lsp.buf.references, merge(opts, { desc = "[G]oto [R]eferences" }))
+	keymap("n", "gD", vim.lsp.buf.declaration, merge(opts, { desc = "[G]oto [D]eclaration" }))
+	keymap("n", "gd", vim.lsp.buf.definition, merge(opts, { desc = "[G]oto [D]efinition" }))
+	keymap("n", "gi", vim.lsp.buf.implementation, merge(opts, { desc = "[G]oto [I]mplementation" }))
+	keymap("n", "K", vim.lsp.buf.hover, merge(opts, { desc = "[K]eyboard hover" }))
+	keymap("n", "<C-k>", vim.lsp.buf.signature_help, merge(opts, { desc = "[S]ignature [H]elp" }))
+	keymap("n", "<leader>D", vim.lsp.buf.type_definition, merge(opts, { desc = "[D]efinition Type" }))
+	keymap("n", "<leader>rn", vim.lsp.buf.rename, merge(opts, { desc = "[R]e[n]ame" }))
+	keymap("n", "<leader>ca", vim.lsp.buf.code_action, merge(opts, { desc = "[C]ode [A]ction" }))
+	keymap("n", "<leader>f", function()
+		vim.lsp.buf.format({ async = true })
+	end, merge(opts, { desc = "[F]ormat Request" }))
+end
+
+M.on_attach = function(buf)
+	if buf ~= nil then
+		lsp_keymaps_buf(buf)
+	else
+		lsp_keymaps()
+	end
 end
 
 M.opts = {
