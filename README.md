@@ -76,6 +76,7 @@ nvim --headless "+Lazy! sync" +qa
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [notifier.nvim](https://github.com/vigoux/notifier.nvim)
 - [Code-Copilot](https://github.com/Exafunction/codeium.nvim)
+- [nvim-java](https://github.com/nvim-java/nvim-java)
 - [jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - [rust-tools](https://github.com/simrat39/rust-tools.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)

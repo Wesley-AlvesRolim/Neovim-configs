@@ -1,6 +1,7 @@
 local M = {}
 local icons = require("config.icons")
 local merge = require("utils").merge
+local keymap = vim.keymap.set
 
 M.setup = function()
 	local signs = {
@@ -37,36 +38,9 @@ M.setup = function()
 	})
 end
 
-local function lsp_keymaps()
-	local keymap = vim.keymap.set
-	keymap("n", "<leader>le", vim.diagnostic.setloclist)
-
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-		callback = function(ev)
-			-- Enable completion triggered by <c-x><c-o>
-			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-			local opts = { buffer = ev.buf, noremap = true, silent = true }
-			keymap("n", "gr", vim.lsp.buf.references, merge(opts, { desc = "[G]oto [R]eferences" }))
-			keymap("n", "gD", vim.lsp.buf.declaration, merge(opts, { desc = "[G]oto [D]eclaration" }))
-			keymap("n", "gd", vim.lsp.buf.definition, merge(opts, { desc = "[G]oto [D]efinition" }))
-			keymap("n", "gi", vim.lsp.buf.implementation, merge(opts, { desc = "[G]oto [I]mplementation" }))
-			keymap("n", "K", vim.lsp.buf.hover, merge(opts, { desc = "[K]eyboard hover" }))
-			keymap("n", "<C-k>", vim.lsp.buf.signature_help, merge(opts, { desc = "[S]ignature [H]elp" }))
-			keymap("n", "<leader>D", vim.lsp.buf.type_definition, merge(opts, { desc = "[D]efinition Type" }))
-			keymap("n", "<leader>rn", vim.lsp.buf.rename, merge(opts, { desc = "[R]e[n]ame" }))
-			keymap("n", "<leader>ca", vim.lsp.buf.code_action, merge(opts, { desc = "[C]ode [A]ction" }))
-			keymap("n", "<leader>f", function()
-				vim.lsp.buf.format({ async = true })
-			end, merge(opts, { desc = "[F]ormat Request" }))
-		end,
-	})
-end
-
 local function lsp_keymaps_buf(buf)
-	local keymap = vim.keymap.set
 	keymap("n", "<leader>le", vim.diagnostic.setloclist)
+	-- Enable completion triggered by <c-x><c-o>
 	vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 	local opts = { buffer = buf, noremap = true, silent = true }
 	keymap("n", "gr", vim.lsp.buf.references, merge(opts, { desc = "[G]oto [R]eferences" }))
@@ -81,6 +55,17 @@ local function lsp_keymaps_buf(buf)
 	keymap("n", "<leader>f", function()
 		vim.lsp.buf.format({ async = true })
 	end, merge(opts, { desc = "[F]ormat Request" }))
+end
+
+local function lsp_keymaps()
+	keymap("n", "<leader>le", vim.diagnostic.setloclist)
+
+	vim.api.nvim_create_autocmd("LspAttach", {
+		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+		callback = function(ev)
+			lsp_keymaps_buf(ev.buf)
+		end,
+	})
 end
 
 M.on_attach = function(buf)

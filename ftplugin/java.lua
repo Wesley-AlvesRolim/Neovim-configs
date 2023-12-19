@@ -63,20 +63,9 @@ local config = {
 	capabilities = opts.capabilities,
 	on_attach = function(_, bufnr)
 		local _, _ = pcall(vim.lsp.codelens.refresh)
-		require("jdtls.dap").setup_dap_main_class_configs()
-		jdtls.setup_dap({ hotcodereplace = "auto" })
 		jdtls.setup.add_commands()
 		opts.on_attach(bufnr)
 	end,
-	init_options = {
-		bundles = {
-			vim.fn.glob(
-				vim.fn.stdpath("data")
-					.. "/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
-				"\n"
-			),
-		},
-	},
 
 	settings = {
 		java = {
@@ -163,4 +152,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
+require("java").setup()
 jdtls.start_or_attach(config)
