@@ -30,7 +30,7 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local config = {
 	cmd = {
 		"java",
-		"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044",
+		-- "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -61,10 +61,22 @@ local config = {
 
 	root_dir = root_dir,
 	capabilities = opts.capabilities,
-	on_attach = function()
+	on_attach = function(_, bufnr)
+		local _, _ = pcall(vim.lsp.codelens.refresh)
+		require("jdtls.dap").setup_dap_main_class_configs()
+		jdtls.setup_dap({ hotcodereplace = "auto" })
 		jdtls.setup.add_commands()
-		opts.on_attach()
+		opts.on_attach(bufnr)
 	end,
+	init_options = {
+		bundles = {
+			vim.fn.glob(
+				vim.fn.stdpath("data")
+					.. "/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
+				"\n"
+			),
+		},
+	},
 
 	settings = {
 		java = {
@@ -143,5 +155,12 @@ local config = {
 		},
 	},
 }
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = { "*.java" },
+	callback = function()
+		local _, _ = pcall(vim.lsp.codelens.refresh)
+	end,
+})
 
 jdtls.start_or_attach(config)
