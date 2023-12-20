@@ -1,16 +1,16 @@
 local merge = require("utils").merge
 
 local function keymap(mode, keys, callback, opts)
-	local default_opts = {
-		silent = true,
-		noremap = true,
-	}
-	if type(opts) == "table" then
-		opts = merge(default_opts, opts)
-	else
-		opts = default_opts
-	end
-	vim.keymap.set(mode, keys, callback, opts)
+  local default_opts = {
+    silent = true,
+    noremap = true,
+  }
+  if type(opts) == "table" then
+    opts = merge(default_opts, opts)
+  else
+    opts = default_opts
+  end
+  vim.keymap.set(mode, keys, callback, opts)
 end
 
 -- quit
@@ -35,10 +35,10 @@ local builtin = require("telescope.builtin")
 keymap("n", "<leader>so", builtin.oldfiles, { desc = "[S]earch [O]ld files: Find recently opened files" })
 keymap("n", "<leader>sb", builtin.buffers, { desc = "[S]earch Buffers: Find existing buffers" })
 keymap(
-	"n",
-	"<leader>sz",
-	builtin.current_buffer_fuzzy_find,
-	{ desc = "[S]earch Fu[z]zilly: Fuzzily search in current buffer]" }
+  "n",
+  "<leader>sz",
+  builtin.current_buffer_fuzzy_find,
+  { desc = "[S]earch Fu[z]zilly: Fuzzily search in current buffer]" }
 )
 
 keymap("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -47,10 +47,10 @@ keymap("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord
 keymap("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 keymap("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 keymap(
-	"n",
-	"<leader>sa",
-	"<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-	{ desc = "[S]earch [A]ll" }
+  "n",
+  "<leader>sa",
+  "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+  { desc = "[S]earch [A]ll" }
 )
 keymap("n", "<leader>sh", builtin.help_tags, { desc = "Help page" })
 keymap("n", "<leader>cm", builtin.git_commits, { desc = "Git [c]o[m]mits" })
@@ -61,41 +61,41 @@ keymap("n", "<leader>ma", builtin.marks, { desc = "telescope bookmarks" })
 local dap = require("dap")
 
 keymap("n", "<leader>db", dap.toggle_breakpoint, {
-	desc = "Toggle Breakpoint (F9)",
+  desc = "Toggle Breakpoint (F9)",
 })
 keymap("n", "<leader>dB", dap.clear_breakpoints, {
-	desc = "Clear Breakpoints",
+  desc = "Clear Breakpoints",
 })
 keymap("n", "<leader>dc", dap.continue, {
-	desc = "Start/Continue (F5)",
+  desc = "Start/Continue (F5)",
 })
 keymap("n", "<leader>di", dap.step_into, {
-	desc = "Step Into (F11)",
+  desc = "Step Into (F11)",
 })
 keymap("n", "<leader>do", dap.step_over, {
-	desc = "Step Over (F10)",
+  desc = "Step Over (F10)",
 })
 keymap("n", "<leader>dO", dap.step_out, {
-	desc = "Step Out (S-F11)",
+  desc = "Step Out (S-F11)",
 })
 keymap("n", "<leader>dq", dap.close, {
-	desc = "Close Session",
+  desc = "Close Session",
 })
 keymap("n", "<leader>dQ", dap.terminate, {
-	desc = "Terminate Session (S-F5)",
+  desc = "Terminate Session (S-F5)",
 })
 keymap("n", "<leader>dp", dap.pause, {
-	desc = "Pause (F6)",
+  desc = "Pause (F6)",
 })
 keymap("n", "<leader>dr", dap.restart_frame, {
-	desc = "Restart (C-F5)",
+  desc = "Restart (C-F5)",
 })
 keymap("n", "<leader>ds", dap.run_to_cursor, {
-	desc = "Run To Cursor",
+  desc = "Run To Cursor",
 })
 keymap("v", "<leader>dE", require("dapui").eval, {
-	desc = "Evaluate Input",
+  desc = "Evaluate Input",
 })
 keymap("n", "<leader>du", require("dapui").toggle, {
-	desc = "Toggle Debugger UI",
+  desc = "Toggle Debugger UI",
 })
