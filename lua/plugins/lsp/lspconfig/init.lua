@@ -1,14 +1,12 @@
 local M = {}
 
 local servers = {
-  "jdtls",
   "lua_ls",
-  "html",
-  "cssls",
   "jsonls",
   "yamlls",
   "dockerls",
   "docker_compose_language_service",
+  "jdtls",
   "omnisharp_mono",
 }
 

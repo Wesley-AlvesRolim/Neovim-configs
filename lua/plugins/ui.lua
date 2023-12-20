@@ -10,23 +10,17 @@ return {
     end,
   },
 
-	-- Buffer
-	{
-		"jeff-dh/expJABS.nvim",
-		branch = "expJABS",
-		event = "VeryLazy",
-		keys = {
-			{
-				"<leader>jo",
-				"<cmd>JABS<cr>",
-				{
-					mode = { "n" },
-					desc = "Toogle JABS",
-				},
-			},
-		},
-		opts = require("config.buffer-manager"),
-	},
+  -- Buffer
+  {
+    "j-morano/buffer_manager.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = require("config.buffer-manager").keys,
+    config = function()
+      local configs = require("config.buffer-manager")
+      configs.keymap()
+      require("buffer_manager").setup(configs.opts)
+    end,
+  },
 
   -- Git
   { "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" }, config = require("config.git-signs").setup },

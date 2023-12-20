@@ -1,23 +1,38 @@
+local keymap = vim.keymap.set
+local opts = {
+  silent = true,
+  noremap = true,
+}
+vim.api.nvim_set_hl(0, "BufferManagerModified", { fg = "#fECDD3" })
+
 return {
-	position = { "center", "center" }, -- position = {'<position_x>', '<position_y>'}
-	relative = "editor", -- win, editor, cursor. Default win
-	clip_popup_size = true,
-	width = 100,
-	height = 20,
-	border = "rounded", -- none, single, double, rounded, solid, shadow, (or an array or chars).
-	sort_mru = true, -- Sort buffers by most recently used
-	split_filename = true, -- Split filename into separate components for name and path.
-	split_filename_path_width = 25, -- If split_filename is true
-	preview_position = "bottom",
-	preview = {
-		width = 120,
-		height = 25,
-		border = "single",
-	},
-	highlight = {
-		current = "Title", -- default StatusLine
-		hidden = "StatusLineNC", -- default ModeMsg
-		split = "WarningMsg", -- default StatusLine
-		alternate = "StatusLine", -- default WarningMsg
-	},
+  keys = { "BO", "BL", "BS", "H", "L" },
+  keymap = function()
+    local bmui = require("buffer_manager.ui")
+    local path = "/tmp/buffer_manager"
+    keymap({ "n" }, "BL", function()
+      bmui.load_menu_from_file(path)
+    end, opts)
+    keymap({ "n" }, "BS", function()
+      bmui.save_menu_to_file(path)
+      vim.notify("Saved " .. path)
+    end, opts)
+    keymap({ "n" }, "BO", bmui.toggle_quick_menu, opts)
+    keymap({ "n" }, "H", bmui.nav_prev, opts)
+    keymap({ "n" }, "L", bmui.nav_next, opts)
+  end,
+  opts = {
+    width = 90,
+    heigth = 0.5,
+    select_menu_item_commands = {
+      v = {
+        key = "<C-v>",
+        command = "vsplit",
+      },
+      h = {
+        key = "<C-h>",
+        command = "split",
+      },
+    },
+  },
 }

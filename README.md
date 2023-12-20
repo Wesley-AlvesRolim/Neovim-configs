@@ -43,7 +43,7 @@ nvim --headless "+Lazy! sync" +qa
 - [nvim-colorizer](https://github.com/NvChad/nvim-colorizer.lua)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [theme](https://github.com/sam4llis/nvim-tundra)
-- [buffer-manager](https://github.com/jeff-dh/expJABS.nvim)
+- [buffer-manager](https://github.com/j-morano/buffer_manager.nvim)
 - [statusline](https://github.com/echasnovski/mini.statusline)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
