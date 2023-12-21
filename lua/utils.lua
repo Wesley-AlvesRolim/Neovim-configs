@@ -41,4 +41,8 @@ function M.insert_item_from_table_to_table(source_table, source_table2, items)
   return source_table_copy
 end
 
+function M.create_folder(path)
+  os.execute("mkdir -p " .. path)
+end
+
 return M
