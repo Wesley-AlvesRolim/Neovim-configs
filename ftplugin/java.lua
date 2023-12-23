@@ -77,7 +77,7 @@ local config = {
         runtimes = {
           {
             name = "JavaSE-17",
-            path = vim.fs.normalize("~/.asdf/installs/java/adoptopenjdk-17.0.8+7/"),
+            path = vim.fs.normalize("~/.asdf/installs/java/openjdk-17/"),
           },
         },
       },
