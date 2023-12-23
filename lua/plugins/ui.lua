@@ -16,9 +16,10 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = require("config.buffer-manager").keys,
     config = function()
+      local bm = require("buffer_manager")
       local configs = require("config.buffer-manager")
+      bm.setup(configs.opts)
       configs.keymap()
-      require("buffer_manager").setup(configs.opts)
     end,
   },
 

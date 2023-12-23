@@ -1,9 +1,12 @@
 local utils = require("utils")
-local keymap = vim.keymap.set
-local opts = {
-  silent = true,
-  noremap = true,
-}
+
+local function map(modes, keys, cb)
+  local opts = {
+    silent = true,
+    noremap = true,
+  }
+  vim.keymap.set(modes, keys, cb, opts)
+end
 vim.api.nvim_set_hl(0, "BufferManagerModified", { fg = "#fECDD3" })
 
 return {
@@ -13,20 +16,20 @@ return {
     local tmp_dir = "/tmp/buffer_manager"
     local project_dir = vim.fn.fnamemodify(".", ":p:h:gs?/?_?:gs?\\.??")
     local path = tmp_dir .. "/bm" .. project_dir
-    keymap({ "n" }, "BL", function()
+    map({ "n" }, "BL", function()
       bmui.load_menu_from_file(path)
-    end, opts)
-    keymap({ "n" }, "BS", function()
+    end)
+    map({ "n" }, "BS", function()
       utils.create_folder(tmp_dir)
       bmui.save_menu_to_file(path)
       vim.notify("Saved " .. path)
-    end, opts)
-    keymap({ "n" }, "BO", bmui.toggle_quick_menu, opts)
-    keymap({ "n" }, "H", bmui.nav_prev, opts)
-    keymap({ "n" }, "L", bmui.nav_next, opts)
+    end)
+    map({ "n" }, "BO", bmui.toggle_quick_menu)
+    map({ "n" }, "H", bmui.nav_prev)
+    map({ "n" }, "L", bmui.nav_next)
   end,
   opts = {
-    width = 100,
+    width = 120,
     heigth = 0.5,
     select_menu_item_commands = {
       v = {
