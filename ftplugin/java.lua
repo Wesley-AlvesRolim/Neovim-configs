@@ -64,14 +64,11 @@ local config = {
   on_attach = function(_, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
     jdtls.setup.add_commands()
-    opts.on_attach(bufnr)
+    opts.on_attach(nil, bufnr)
   end,
 
   settings = {
     java = {
-      eclipse = {
-        downloadSources = true,
-      },
       configuration = {
         updateBuildConfiguration = "interactive",
         runtimes = {
@@ -80,6 +77,9 @@ local config = {
             path = vim.fs.normalize("~/.asdf/installs/java/openjdk-17/"),
           },
         },
+      },
+      eclipse = {
+        downloadSources = true,
       },
       maven = {
         downloadSources = true,

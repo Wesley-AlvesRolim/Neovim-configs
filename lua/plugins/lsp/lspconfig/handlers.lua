@@ -68,7 +68,7 @@ local function lsp_keymaps()
   })
 end
 
-M.on_attach = function(buf)
+M.on_attach = function(_, buf)
   if buf ~= nil then
     lsp_keymaps_buf(buf)
   else
