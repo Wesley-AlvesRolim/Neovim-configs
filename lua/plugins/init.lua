@@ -2,7 +2,7 @@ return {
   -- Comment
   {
     "numToStr/Comment.nvim",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("Comment").setup({
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -14,7 +14,7 @@ return {
   {
     "kylechui/nvim-surround",
     version = "*",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
 
@@ -66,6 +66,16 @@ return {
       plugin_manager_text = "Managing plugins",
       reading_text = "Reading %s",
       workspace_text = "Working on %s",
+    },
+  },
+
+  -- Good use of neovim
+  {
+    "m4xshen/hardtime.nvim",
+    event = { "BufEnter" },
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {
+      disabled_filetypes = { "NvimTree", "lazy", "mason", "buffer_manager", "help" },
     },
   },
 }
