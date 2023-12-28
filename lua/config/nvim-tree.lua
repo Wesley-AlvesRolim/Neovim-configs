@@ -32,12 +32,18 @@ M.icons_configs = {
       cterm_color = "65",
       name = "Vue",
     },
+    ["playwright.config.ts"] = {
+      icon = "󰴂",
+      color = "#45ba4b",
+      cterm_color = "65",
+      name = "playwright",
+    },
   },
   default = true,
 }
 
 M.tree_configs = {
-
+  update_focused_file = { enable = true },
   sort_by = "case_sensitive",
   view = {
     adaptive_size = true,
