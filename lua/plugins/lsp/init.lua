@@ -2,9 +2,24 @@ return {
   -- Lua/Neovim
   {
     "folke/neodev.nvim",
-    event = "BufEnter",
+    ft = "lua",
     config = function()
       require("neodev").setup()
+      local opts = require("plugins.lsp.lspconfig.handlers").opts
+      local is_ok, lspconfig = pcall(require, "lspconfig")
+      if is_ok then
+        lspconfig.lua_ls.setup({
+          capabilities = opts.capabilities,
+          on_attach = opts.on_attach,
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = "Replace",
+              },
+            },
+          },
+        })
+      end
     end,
   },
 
