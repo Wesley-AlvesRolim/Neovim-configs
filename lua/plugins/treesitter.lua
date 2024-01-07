@@ -9,8 +9,7 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    require("nvim-treesitter.configs").setup({
-      ensure_installed = { "c", "lua", "java", "typescript", "yaml", "json", "regex", "tsx" },
+    local configs = {
       sync_install = false,
       auto_install = true,
       ignore_install = { "javascript", "css", "scss" },
@@ -42,6 +41,7 @@ return {
         disable = { "html", "css", "scss" },
         additional_vim_regex_highlighting = false,
       },
-    })
+    }
+    require("nvim-treesitter.configs").setup(configs)
   end,
 }
