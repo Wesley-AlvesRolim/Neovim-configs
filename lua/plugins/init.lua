@@ -1,50 +1,4 @@
 return {
-  -- Comment
-  {
-    "numToStr/Comment.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-    end,
-  },
-
-  -- Surround
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
-    config = true,
-  },
-
-  -- Auto close ( [ {
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
-    end,
-  },
-
-  -- Code Copilot
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    cmd = "Codeium",
-    build = ":Codeium Auth",
-    opts = {},
-  },
-
-  -- Tmux integration
-  {
-    "christoomey/vim-tmux-navigator",
-    event = "VeryLazy",
-  },
-
   -- Discord
   {
     "andweeb/presence.nvim",
@@ -67,6 +21,13 @@ return {
       reading_text = "Reading %s",
       workspace_text = "Working on %s",
     },
+  },
+
+  -- Session persistence
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
   },
 
   -- Good use of neovim
