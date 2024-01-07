@@ -18,30 +18,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 local M = {}
 
-M.icons_configs = {
-  override = {
-    zsh = {
-      icon = "",
-      color = "#428850",
-      cterm_color = "65",
-      name = "Zsh",
-    },
-    vue = {
-      icon = "",
-      color = "#00dc82",
-      cterm_color = "65",
-      name = "Vue",
-    },
-    ["playwright.config.ts"] = {
-      icon = "󰴂",
-      color = "#45ba4b",
-      cterm_color = "65",
-      name = "playwright",
-    },
-  },
-  default = true,
-}
-
 M.tree_configs = {
   update_focused_file = { enable = true },
   sort_by = "case_sensitive",
