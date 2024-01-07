@@ -32,7 +32,8 @@ return {
     event = "VeryLazy",
     config = function()
       require("notifier").setup({
-        components = { "nvim", "lsp", "mason", "null-ls", "treesitter" },
+        components = { "nvim", "lsp", "mason", "treesitter" },
+        component_name_recall = true,
       })
     end,
   },
