@@ -39,6 +39,7 @@ M.setup = function()
 end
 
 local function lsp_keymaps_buf(buf)
+  keymap("n", "<leader>se", vim.diagnostic.open_float)
   keymap("n", "<leader>le", vim.diagnostic.setloclist)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -58,6 +59,7 @@ local function lsp_keymaps_buf(buf)
 end
 
 local function lsp_keymaps()
+  keymap("n", "<leader>se", vim.diagnostic.open_float)
   keymap("n", "<leader>le", vim.diagnostic.setloclist)
 
   vim.api.nvim_create_autocmd("LspAttach", {

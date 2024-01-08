@@ -19,6 +19,10 @@ keymap("n", "<leader>q", ":q<CR>", { desc = "[Q]uit" })
 -- save
 keymap("n", "<leader>w", ":w<CR>", { desc = "[W]rite" })
 
+-- Increment/Decrement numbers
+keymap("n", "<A-+>", "<C-A>", { desc = "Increment" })
+keymap("n", "<A-->", "<C-X>", { desc = "Decrement" })
+
 -- Move current line / block with Alt-j/k like vscode.
 keymap("n", "<A-j>", ":m .+1<CR>==")
 keymap("n", "<A-k>", ":m .-2<CR>==")
