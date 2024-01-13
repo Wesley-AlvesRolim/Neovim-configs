@@ -7,9 +7,8 @@ local omnisharp_bin = mason_bin_dir .. "omnisharp"
 require("lspconfig")["omnisharp"].setup({
   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
   capabilities = opts.capabilities,
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     opts.on_attach(nil, bufnr)
-    client.server_capabilities.semanticTokensProvider = nil
 
     local dap = require("dap")
     dap.adapters.coreclr = {
