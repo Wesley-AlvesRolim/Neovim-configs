@@ -49,20 +49,13 @@ return {
 
   -- Rust
   {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    opts = {
-      tools = {
-        runnables = {
-          use_telescope = true,
-        },
-      },
-    },
-    config = function(_, opts)
-      local utils = require("utils")
-      require("rust-tools").setup(utils.merge(opts, {
+    "mrcjkb/rustaceanvim",
+    version = "^3",
+    ft = { "rust" },
+    config = function()
+      vim.g.rustaceanvim = {
         server = require("plugins.lsp.lspconfig.local-configs").rust_analyzer,
-      }))
+      }
     end,
   },
 
