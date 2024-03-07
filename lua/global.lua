@@ -1,11 +1,20 @@
-vim.g.mapleader = " "
-vim.o.number = true
-vim.o.tabstop = 2
-vim.o.cursorline = true
-vim.o.shiftwidth = 2
-vim.o.scrolloff = 4
-vim.o.laststatus = 3
+local opt = vim.opt
 
-vim.opt.background = "dark"
-vim.opt.termguicolors = true
-vim.opt.syntax = "on"
+vim.g.mapleader = " "
+opt.number = true
+opt.cursorline = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.smartindent = true
+opt.scrolloff = 4
+opt.laststatus = 3
+opt.ignorecase = true
+opt.smartcase = true
+opt.incsearch = true
+opt.showmode = false
+opt.splitbelow = true
+opt.splitright = true
+
+opt.background = "dark"
+opt.termguicolors = true
+opt.syntax = "on"

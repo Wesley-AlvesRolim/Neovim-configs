@@ -23,6 +23,12 @@ keymap("n", "<leader>w", ":w<CR>", { desc = "[W]rite" })
 keymap("n", "<A-+>", "<C-A>", { desc = "Increment" })
 keymap("n", "<A-->", "<C-X>", { desc = "Decrement" })
 
+-- Resize Windows
+keymap("n", "<C-Up>", ":horizontal resize +3<CR>")
+keymap("n", "<C-Down>", ":horizontal resize -3<CR>")
+keymap("n", "<C-Left>", ":vertical resize +3<CR>")
+keymap("n", "<C-Right>", ":vertical resize -3<CR>")
+
 -- Move current line / block with Alt-j/k like vscode.
 keymap("n", "<A-j>", ":m .+1<CR>==")
 keymap("n", "<A-k>", ":m .-2<CR>==")
