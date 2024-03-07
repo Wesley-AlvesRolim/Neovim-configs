@@ -44,7 +44,9 @@ return {
       vim.api.nvim_create_autocmd({ "VimLeave" }, {
         callback = function()
           for _, tool in pairs(ensure_installed) do
-            os.execute("killall " .. tool)
+            local _, _ = pcall(function()
+              os.execute("killall " .. tool)
+            end)
           end
         end,
       })

@@ -33,6 +33,16 @@ M.formatters = {
       "gdscript3",
     },
   },
+  csharpier = {
+    filetype = {
+      "cs",
+    },
+  },
+  ["pretty-php"] = {
+    filetype = {
+      "php",
+    },
+  },
 }
 
 M.linters = {
