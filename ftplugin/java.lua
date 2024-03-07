@@ -63,7 +63,6 @@ local config = {
   capabilities = opts.capabilities,
   on_attach = function(_, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
-    jdtls.setup.add_commands()
     opts.on_attach(nil, bufnr)
   end,
 
