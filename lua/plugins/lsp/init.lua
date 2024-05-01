@@ -83,16 +83,6 @@ return {
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-cmdline",
       "f3fora/cmp-spell",
-
-      {
-        "L3MON4D3/LuaSnip",
-        version = "2.*",
-        build = "make install_jsregexp",
-        config = function()
-          require("config.snippets")
-        end,
-        dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
-      },
     },
   },
 }
