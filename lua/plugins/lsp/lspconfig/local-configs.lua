@@ -12,13 +12,13 @@ M.tailwindcss = {
   end,
 }
 
-M.tsserver = {
-  capabilities = lsp_opts.capabilities,
-  on_attach = lsp_opts.on_attach,
-  init_options = {
-    maxTsServerMemory = "1024",
-  },
-}
+-- M.tsserver = {
+--   capabilities = lsp_opts.capabilities,
+--   on_attach = lsp_opts.on_attach,
+--   init_options = {
+--     maxTsServerMemory = "1024",
+--   },
+-- }
 
 M.rust_analyzer = {
   capabilities = lsp_opts.capabilities,

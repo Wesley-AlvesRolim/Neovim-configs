@@ -47,6 +47,19 @@ return {
     },
   },
 
+  -- TS
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    config = function()
+      local lsp_opts = require("plugins.lsp.lspconfig.handlers").opts
+      require("typescript-tools").setup({
+        on_attach = lsp_opts.on_attach,
+      })
+    end,
+  },
+
   -- Rust
   {
     "mrcjkb/rustaceanvim",
