@@ -1,44 +1,39 @@
+local merge = require("utils").merge
+local opts = { mode = "n", noremap = true, silent = true }
+
+local function map(keymap, module, desc)
+  return merge({
+    keymap,
+    function()
+      require("dap")[module]()
+    end,
+    desc = "DAP: " .. desc,
+  }, opts)
+end
+
 local M = {
   "mfussenegger/nvim-dap",
-  ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "go" },
   dependencies = {
-    "rcarriga/nvim-dap-ui",
+    { "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio" } },
     "theHamsta/nvim-dap-virtual-text",
     "LiadOz/nvim-dap-repl-highlights",
   },
   keys = {
-    {
-      "<F5>",
+    merge({
+      "<leader>du",
       function()
-        require("dap").continue()
+        require("dapui").toggle()
       end,
-      desc = "DAP: Continue",
-      mode = "n",
-    },
-    {
-      "<F10>",
-      function()
-        require("dap").step_over()
-      end,
-      desc = "DAP: Step Over",
-      mode = "n",
-    },
-    {
-      "<F11>",
-      function()
-        require("dap").step_into()
-      end,
-      desc = "DAP: Step Into",
-      mode = "n",
-    },
-    {
-      "<F12>",
-      function()
-        require("dap").step_out()
-      end,
-      desc = "DAP: Step Out",
-      mode = "n",
-    },
+      desc = "DAP UI: toggle",
+    }, opts),
+    map("<F5>", "continue", "Continue"),
+    map("<S-F5>", "terminate", "Terminate"),
+    map("<F9>", "toggle_breakpoint", "Breakpoint"),
+    map("<S-F9>", "clear_breakpoints", "Clear Breakpoint"),
+    map("<F10>", "step_over", "Step Over"),
+    map("<F11>", "step_into", "Step Into"),
+    map("<S-F11>", "step_out", "Step Out"),
   },
 }
 
@@ -48,32 +43,16 @@ M.config = function()
   local dap_vt = require("nvim-dap-virtual-text")
 
   dap_vt.setup({})
-
-  -- DAP UI
   dapui.setup()
-
-  -- DAP REPL Highlights
   require("nvim-dap-repl-highlights").setup()
 
-  vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "", linehl = "", numhl = "" })
-  vim.fn.sign_define("DapBreakpointRejected", {
-    text = " ",
-    texthl = "DiagnosticError",
-    linehl = "",
-    numhl = "",
-  })
-  vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "", linehl = "", numhl = "" })
-  vim.fn.sign_define("DapStopped", {
-    text = " ",
-    texthl = "DiagnosticWarn",
-    linehl = "DapStoppedLine",
-    numhl = "DapStoppedLine",
-  })
-  vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "", linehl = "", numhl = "" })
+  M.config_icons()
+  M.config_listeners(dap, dapui)
+  M.config_go(dap)
+  M.config_ts(dap)
+end
 
-  -- dap.set_log_level("TRACE")
-
-  -- Automatically open UI
+function M.config_listeners(dap, dapui)
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
   end
@@ -83,17 +62,41 @@ M.config = function()
   dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
   end
+end
 
-  -- Keybindings
-  local keyset = vim.api.nvim_set_keymap
-  local opts = { noremap = true, silent = true }
-  keyset("n", "<F5>", "<CMD>lua require('dap').continue()<CR>", opts)
-  keyset("n", "<S-F5>", "<CMD>lua require('dap').terminate()<CR>", opts)
-  keyset("n", "<F9>", "<CMD>lua require('dap').toggle_breakpoint()<CR>", opts)
-  keyset("n", "<F10>", "<CMD>lua require('dap').step_over()<CR>", opts)
-  keyset("n", "<F11>", "<CMD>lua require('dap').step_into()<CR>", opts)
-  keyset("n", "<S-F11>", "<CMD>lua require('dap').step_out()<CR>", opts)
+function M.config_icons()
+  local define = vim.fn.sign_define
+  define("DapBreakpoint", { text = " ", texthl = "", linehl = "", numhl = "" })
+  define("DapBreakpointRejected", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
+  define("DapBreakpointCondition", { text = " ", texthl = "", linehl = "", numhl = "" })
+  define(
+    "DapStopped",
+    { text = " ", texthl = "DiagnosticWarn", linehl = "DapStoppedLine", numhl = "DapStoppedLine" }
+  )
+  define("DapLogPoint", { text = ".>", texthl = "", linehl = "", numhl = "" })
+end
 
+function M.config_go(dap)
+  dap.adapters.go = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      command = vim.fn.stdpath("data") .. "/mason/bin/dlv",
+      args = { "dap", "-l", "127.0.0.1:${port}" },
+    },
+  }
+  dap.configurations.go = {
+    {
+      type = "go",
+      name = "Debug",
+      request = "launch",
+      -- program = vim.fn.fnamemodify(".", ":p:h:gs?") .. "/src/main.go",
+      program = "${file}",
+    },
+  }
+end
+
+function M.config_ts(dap)
   dap.adapters.firefox = {
     type = "executable",
     command = "node",
@@ -117,17 +120,6 @@ M.config = function()
       vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js",
     },
   }
-
-  -- TODO: not working
-  -- dap.adapters["pwa-node"] = {
-  -- 	type = "server",
-  -- 	host = "127.0.0.1",
-  -- 	port = "9229",
-  -- 	executable = {
-  -- 		command = "js-debug-adapter",
-  -- 		args = { "9229" },
-  -- 	},
-  -- }
 
   dap.configurations.typescript = {
     -- Working configs 🎉
