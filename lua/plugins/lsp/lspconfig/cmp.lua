@@ -1,13 +1,6 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 
 local configs = {
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
-
   formatting = {
     format = function(entry, vim_item)
       local icons = require("config.icons").kinds
@@ -28,20 +21,16 @@ local configs = {
   },
 
   mapping = cmp.mapping.preset.insert({
-    ["<C-k>"] = function(fallback)
+    ["<C-p>"] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
     end,
-    ["<C-j>"] = function(fallback)
+    ["<C-n>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       else
         fallback()
       end
