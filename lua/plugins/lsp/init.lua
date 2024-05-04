@@ -56,6 +56,12 @@ return {
       local lsp_opts = require("plugins.lsp.lspconfig.handlers").opts
       require("typescript-tools").setup({
         on_attach = lsp_opts.on_attach,
+        settings = {
+          separate_diagnostic_server = false,
+          publish_diagnostic_on = "insert_leave",
+          expose_as_code_action = "all",
+          tsserver_max_memory = 512 + 512 + 256,
+        },
       })
     end,
   },
