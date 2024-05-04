@@ -1,6 +1,11 @@
 local cmp = require("cmp")
 
 local configs = {
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
   formatting = {
     format = function(entry, vim_item)
       local icons = require("config.icons").kinds

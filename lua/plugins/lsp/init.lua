@@ -96,6 +96,11 @@ return {
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-cmdline",
       "f3fora/cmp-spell",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+      },
     },
   },
 }
