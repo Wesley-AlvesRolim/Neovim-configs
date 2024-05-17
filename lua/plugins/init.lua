@@ -36,7 +36,7 @@ return {
     event = { "BufEnter" },
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {
-      disabled_filetypes = { "NvimTree", "lazy", "mason", "buffer_manager", "help" },
+      disabled_filetypes = { "NvimTree", "lazy", "mason", "buffer_manager", "help", "qf", "lspinfo", "oil" },
     },
   },
 }

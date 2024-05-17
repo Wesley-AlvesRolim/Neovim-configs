@@ -37,9 +37,6 @@ keymap("x", "<A-k>", ":m '<-2<CR>gv-gv")
 keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
--- Nvim.Tree
-keymap({ "n" }, "<C-B>", ":NvimTreeToggle<CR>")
-
 -- Telescope
 local builtin = require("telescope.builtin")
 keymap("n", "<leader>so", builtin.oldfiles, { desc = "[S]earch [O]ld files: Find recently opened files" })
