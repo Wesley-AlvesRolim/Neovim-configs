@@ -49,6 +49,7 @@ M.config = function()
   M.config_icons()
   M.config_listeners(dap, dapui)
   M.config_go(dap)
+  M.config_rust(dap)
   M.config_ts(dap)
 end
 
@@ -96,6 +97,31 @@ function M.config_go(dap)
   }
 end
 
+function M.config_rust(dap)
+  dap.adapters.codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      command = vim.fn.expand("~/.local/share/nvim/mason/bin/codelldb"),
+      args = { "--port", "${port}" },
+    },
+  }
+  dap.configurations.rust = {
+    {
+      name = "Launch file",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input("Path to executable: " .. vim.fn.getcwd() .. "/")
+      end,
+      cwd = "${workspaceFolder}",
+      stopOnEntry = false,
+    },
+  }
+  dap.configurations.c = dap.configurations.rust
+  dap.configurations.cpp = dap.configurations.rust
+end
+
 function M.config_ts(dap)
   dap.adapters.firefox = {
     type = "executable",
@@ -105,30 +131,30 @@ function M.config_ts(dap)
     },
   }
 
-  dap.adapters.node2 = {
-    type = "executable",
-    command = "node",
-    args = {
-      vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js",
+  dap.adapters["pwa-node"] = {
+    type = "server",
+    host = "localhost",
+    port = "${port}",
+    executable = {
+      command = "node",
+      args = {
+        vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+        "${port}",
+      },
     },
   }
 
-  dap.adapters.chrome = {
-    type = "executable",
-    command = "node",
-    args = {
-      vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js",
-    },
-  }
+  dap.adapters["node-terminal"] = dap.adapters["pwa-node"]
 
   dap.configurations.typescript = {
     -- Working configs 🎉
     {
       -- For this to work you need to make sure the node process is started with the `--inspect` flag.
       name = "Node - Attach to process",
-      type = "node2",
+      type = "pwa-node",
       request = "attach",
       processId = require("dap.utils").pick_process,
+      cwd = "${workspaceFolder}",
     },
     {
       name = "Firefox - Launch localhost",
@@ -142,15 +168,6 @@ function M.config_ts(dap)
       firefoxExecutable = "/usr/bin/firefox",
     },
     {
-      name = "Chrome - Launch localhost",
-      type = "chrome",
-      request = "launch",
-      runtimeExecutable = "/usr/bin/chromium",
-      -- TODO - webRoot should be set directly to workspaceFolder
-      webRoot = "${workspaceFolder}/src/build",
-      url = "http://localhost:3000",
-    }, -- Not tested configs yet 🙀
-    {
       name = "Nope - Node launch file",
       type = "node2",
       request = "launch",
@@ -163,13 +180,11 @@ function M.config_ts(dap)
       skipFiles = { "<node_internals>/**", "node_modules/**" },
     },
     {
-      name = "Nope - Debug with Chrome",
-      type = "chrome",
-      request = "attach",
-      sourceMaps = true,
-      program = "${file}",
-      port = 9222,
-      webRoot = "${workspaceFolder}/src",
+      name = "Nope - Run npm run start:dev",
+      command = "npm run start:dev",
+      request = "launch",
+      type = "node-terminal",
+      cwd = "${workspaceFolder}",
     },
     {
       name = "Nope - Run npm run dev",
@@ -205,6 +220,33 @@ function M.config_ts(dap)
       cwd = "${workspaceFolder}",
       console = "integratedTerminal",
       internalConsoleOptions = "neverOpen",
+    },
+    {
+      type = "firefox",
+      request = "launch",
+      name = "Debug React Apps -> NextJs (Firefox)",
+      url = "http://localhost:3000",
+      webRoot = "${workspaceFolder}",
+      sourceMapPathOverrides = {
+        ["webpack:///*"] = "${webRoot}/*",
+        ["webpack:///./~/*"] = "${webRoot}/node_modules/*",
+      },
+      skipFiles = {
+        "<node_internals>/**",
+        "node_modules/**",
+        "**/react/**",
+        "**/react-dom/**",
+        "**/webpack/**", -- Skip webpack internals
+        "**/babel/**", -- Skip babel internals
+        "**/jest/**", -- Skip jest internals
+        "**/vite/**", -- Skip vite internals
+        "**/.vite/**", -- Skip vite internals
+        "**/dist/**", -- Skip dist directories
+        "**/next/**", -- Skip Next.js internals
+        "**/.next/**", -- Skip Next.js build output
+      },
+      firefoxExecutable = "/usr/bin/firefox",
+      sourceMaps = true,
     },
   }
 
