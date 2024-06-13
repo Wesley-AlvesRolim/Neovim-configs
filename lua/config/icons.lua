@@ -1,9 +1,17 @@
+local diagnostics = {
+  Error = "󰅚 ", --🅴," ""󰢃 "
+  Warn = "󰀪 ", --🆆," "
+  Hint = "󰌶 ", --🅸,"" "󰛩 "
+  Info = " ", --🅷," ","󰗡 "
+}
+
 return {
-  diagnostics = {
-    Error = "󰅚 ", --🅴," ""󰢃 "
-    Warn = "󰀪 ", --🆆," "
-    Hint = "󰌶 ", --🅸,"" "󰛩 "
-    Info = " ", --🅷," ","󰗡 "
+  diagnostics = diagnostics,
+  signs = {
+    { name = "DiagnosticSignError", text = diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = diagnostics.Warn },
+    { name = "DiagnosticSignHint", text = diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = diagnostics.Info },
   },
   git = {
     add = { text = "│" }, --" ","▎"

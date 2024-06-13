@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 return {
   -- Theme
   {
@@ -36,5 +38,19 @@ return {
         component_name_recall = true,
       })
     end,
+  },
+
+  -- QuickFix List
+  {
+    "yorickpeterse/nvim-pqf",
+    event = { "VeryLazy" },
+    opts = {
+      signs = {
+        error = { hl = icons.signs[1].name, text = icons.signs[1].text },
+        warning = { hl = icons.signs[2].name, text = icons.signs[2].text },
+        info = { hl = icons.signs[3].name, text = icons.signs[3].text },
+        hint = { hl = icons.signs[4].name, text = icons.signs[4].text },
+      },
+    },
   },
 }

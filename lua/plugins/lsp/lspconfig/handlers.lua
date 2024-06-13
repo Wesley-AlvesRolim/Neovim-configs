@@ -4,22 +4,13 @@ local merge = require("utils").merge
 local keymap = vim.keymap.set
 
 M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warn },
-    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
-  }
-
-  for _, sign in ipairs(signs) do
+  for _, sign in ipairs(icons.signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
   local diagConfig = {
     virtual_text = true,
-    signs = {
-      active = signs,
-    },
+    signs = { active = icons.signs },
     update_in_insert = true,
     underline = true,
     severity_sort = true,
