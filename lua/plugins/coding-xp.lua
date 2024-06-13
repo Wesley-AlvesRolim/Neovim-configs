@@ -45,6 +45,13 @@ return {
     },
   },
 
+  {
+    "echasnovski/mini.ai",
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
+  },
+
   -- Surround
   {
     "kylechui/nvim-surround",
