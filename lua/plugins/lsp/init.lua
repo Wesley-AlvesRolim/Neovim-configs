@@ -48,28 +48,26 @@ return {
   },
 
   -- TS
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    config = function()
-      local lsp_opts = require("plugins.lsp.lspconfig.handlers").opts
-      require("typescript-tools").setup({
-        on_attach = lsp_opts.on_attach,
-        settings = {
-          separate_diagnostic_server = false,
-          publish_diagnostic_on = "insert_leave",
-          expose_as_code_action = "all",
-          tsserver_max_memory = 512 + 512 + 256,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  --   config = function()
+  --     local lsp_opts = require("plugins.lsp.lspconfig.handlers").opts
+  --     require("typescript-tools").setup({
+  --       on_attach = lsp_opts.on_attach,
+  --       settings = {
+  --         separate_diagnostic_server = true,
+  --         expose_as_code_action = "all",
+  --       },
+  --     })
+  --   end,
+  -- },
 
   -- Rust
   {
     "mrcjkb/rustaceanvim",
-    version = "^3",
+    version = "^5",
     ft = { "rust" },
     config = function()
       vim.g.rustaceanvim = {

@@ -11,20 +11,20 @@ M.formatters = {
       "lua",
     },
   },
-  prettierd = {
-    filetype = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "vue",
-      "html",
-      "css",
-      "json",
-      "jsonc",
-      "yaml",
-    },
-  },
+  -- prettierd = {
+  --   filetype = {
+  --     "javascript",
+  --     "javascriptreact",
+  --     "typescript",
+  --     "typescriptreact",
+  --     "vue",
+  --     "html",
+  --     "css",
+  --     "json",
+  --     "jsonc",
+  --     -- "yaml",
+  --   },
+  -- },
   gdformat = {
     command = vim.fn.stdpath("data") .. "/mason/bin/gdformat",
     filetype = {
@@ -43,6 +43,11 @@ M.formatters = {
       "php",
     },
   },
+  blue = {
+    filetype = {
+      "python",
+    },
+  },
 }
 
 M.linters = {
@@ -51,15 +56,15 @@ M.linters = {
       "markdown",
     },
   },
-  eslint_d = {
-    filetype = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "vue",
-    },
-  },
+  -- eslint_d = {
+  --   filetype = {
+  --     "javascript",
+  --     "javascriptreact",
+  --     "typescript",
+  --     "typescriptreact",
+  --     "vue",
+  --   },
+  -- },
   gdlint = {
     command = vim.fn.stdpath("data") .. "/mason/bin/gdlint",
     filetype = {
