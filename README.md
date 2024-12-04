@@ -79,6 +79,7 @@ nvim --headless "+Lazy! sync" +qa
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [nvim-java](https://github.com/nvim-java/nvim-java)
 - [jdtls](https://github.com/mfussenegger/nvim-jdtls)
+- [better-ts-erros](https://github.com/davidosomething/format-ts-errors.nvim)
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 - [typescript-tools](https://github.com/pmizio/typescript-tools.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
