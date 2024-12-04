@@ -47,7 +47,6 @@ nvim --headless "+Lazy! sync" +qa
 - [statusline](https://github.com/echasnovski/mini.statusline)
 - [mini.ai](https://github.com/echasnovski/mini.ai)
 - [improved-ft](https://github.com/backdround/improved-ft.nvim)
-- [nvim-pqf](https://github.com/yorickpeterse/nvim-pqf)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-calc](https://github.com/hrsh7th/cmp-calc)
