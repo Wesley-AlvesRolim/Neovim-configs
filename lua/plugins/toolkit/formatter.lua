@@ -1,3 +1,4 @@
+local merge = require("utils").merge
 local source = require("plugins.toolkit.source")
 
 local filetype = {}
@@ -22,5 +23,5 @@ conform.setup({
 })
 
 vim.api.nvim_create_user_command("Format", function()
-  conform.format(conform_format_config)
+  conform.format(merge(conform_format_config, { async = true }))
 end, { bang = true })
