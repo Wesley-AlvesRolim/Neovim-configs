@@ -40,7 +40,6 @@ local function lsp_keymaps_buf(buf)
   keymap("n", "gd", vim.lsp.buf.definition, merge(opts, { desc = "[G]oto [D]efinition" }))
   keymap("n", "gi", vim.lsp.buf.implementation, merge(opts, { desc = "[G]oto [I]mplementation" }))
   keymap("n", "K", vim.lsp.buf.hover, merge(opts, { desc = "[K]eyboard hover" }))
-  keymap("n", "<C-k>", vim.lsp.buf.signature_help, merge(opts, { desc = "[S]ignature [H]elp" }))
   keymap("n", "<leader>D", vim.lsp.buf.type_definition, merge(opts, { desc = "[D]efinition Type" }))
   keymap("n", "<leader>rn", vim.lsp.buf.rename, merge(opts, { desc = "[R]e[n]ame" }))
   keymap("n", "<leader>ca", vim.lsp.buf.code_action, merge(opts, { desc = "[C]ode [A]ction" }))
@@ -71,7 +70,7 @@ end
 
 M.opts = {
   on_attach = M.on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require("blink.cmp").get_lsp_capabilities(),
 }
 
 return M
