@@ -71,7 +71,24 @@ return {
 
   -- Tmux integration
   {
-    "christoomey/vim-tmux-navigator",
+    "aserowy/tmux.nvim",
     event = "VeryLazy",
+    opts = {
+      resize = {
+        enable_default_keybindings = false,
+        resize_step_x = 1,
+        resize_step_y = 1,
+      },
+      copy_sync = {
+        sync_clipboard = true,
+      },
+    },
+  },
+
+  -- Gitmoji
+  {
+    "HenriqueArtur/neo-gitmoji.nvim",
+    event = "BufEnter",
+    opts = {},
   },
 }
