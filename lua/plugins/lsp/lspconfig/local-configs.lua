@@ -34,6 +34,7 @@ M.ts_ls = {
 
         -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
         if entry.code == 80001 then
+          -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
           table.remove(result.diagnostics, idx)
         else
           idx = idx + 1

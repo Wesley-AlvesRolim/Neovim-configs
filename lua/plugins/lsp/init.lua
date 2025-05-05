@@ -65,7 +65,13 @@ return {
       })
     end,
   },
-  { "davidosomething/format-ts-errors.nvim" },
+  {
+    "davidosomething/format-ts-errors.nvim",
+    opts = {
+      add_markdown = true,
+      start_indent_level = 0,
+    },
+  },
 
   -- Rust
   {
@@ -92,7 +98,7 @@ return {
 
   {
     "saghen/blink.cmp",
-    build = "cargo build --release",
+    version = "1.*",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "rafamadriz/friendly-snippets",

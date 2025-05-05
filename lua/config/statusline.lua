@@ -21,7 +21,7 @@ return {
     })
 
     MiniStatusline.section_diagnostics = function(args)
-      local hasnt_attached_client = next(vim.lsp.buf_get_clients()) == nil
+      local hasnt_attached_client = next(vim.lsp.get_clients()) == nil
       local dont_show_lsp = MiniStatusline.is_truncated(args.trunc_width)
         or vim.bo.buftype ~= ""
         or hasnt_attached_client

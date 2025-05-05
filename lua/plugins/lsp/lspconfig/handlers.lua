@@ -3,30 +3,40 @@ local icons = require("config.icons")
 local merge = require("utils").merge
 local keymap = vim.keymap.set
 
+local floating_menu_opts = {
+  border = "rounded",
+  width = 60,
+}
+
 M.setup = function()
+  local signs_config = {
+    text = {},
+    linehl = {},
+    numhl = {},
+  }
+  local severity_type = {
+    ["DiagnosticSignError"] = vim.diagnostic.severity.ERROR,
+    ["DiagnosticSignWarn"] = vim.diagnostic.severity.WARN,
+    ["DiagnosticSignHint"] = vim.diagnostic.severity.HINT,
+    ["DiagnosticSignInfo"] = vim.diagnostic.severity.INFO,
+  }
+
   for _, sign in ipairs(icons.signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    local severity = severity_type[sign.name]
+    signs_config.text[severity] = sign.text
+    signs_config.linehl[severity] = sign.name
+    signs_config.numhl[severity] = ""
   end
 
   local diagConfig = {
     virtual_text = true,
-    signs = { active = icons.signs },
+    signs = signs_config,
     update_in_insert = true,
     underline = true,
     severity_sort = true,
   }
 
   vim.diagnostic.config(diagConfig)
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-    width = 60,
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-    width = 60,
-  })
 end
 
 local function lsp_keymaps_buf(buf)
@@ -39,7 +49,9 @@ local function lsp_keymaps_buf(buf)
   keymap("n", "gD", vim.lsp.buf.declaration, merge(opts, { desc = "[G]oto [D]eclaration" }))
   keymap("n", "gd", vim.lsp.buf.definition, merge(opts, { desc = "[G]oto [D]efinition" }))
   keymap("n", "gi", vim.lsp.buf.implementation, merge(opts, { desc = "[G]oto [I]mplementation" }))
-  keymap("n", "K", vim.lsp.buf.hover, merge(opts, { desc = "[K]eyboard hover" }))
+  keymap("n", "K", function()
+    vim.lsp.buf.hover(floating_menu_opts)
+  end, merge(opts, { desc = "[K]eyboard hover" }))
   keymap("n", "<leader>D", vim.lsp.buf.type_definition, merge(opts, { desc = "[D]efinition Type" }))
   keymap("n", "<leader>rn", vim.lsp.buf.rename, merge(opts, { desc = "[R]e[n]ame" }))
   keymap("n", "<leader>ca", vim.lsp.buf.code_action, merge(opts, { desc = "[C]ode [A]ction" }))
@@ -49,7 +61,9 @@ local function lsp_keymaps_buf(buf)
 end
 
 local function lsp_keymaps()
-  keymap("n", "<leader>se", vim.diagnostic.open_float)
+  keymap("n", "<leader>se", function()
+    vim.diagnostic.open_float(floating_menu_opts)
+  end)
   keymap("n", "<leader>le", vim.diagnostic.setloclist)
 
   vim.api.nvim_create_autocmd("LspAttach", {

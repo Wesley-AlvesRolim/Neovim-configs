@@ -26,10 +26,12 @@ M.setup = function(servers, configured_servers, local_configured_servers)
     mason_lspconfig.setup_handlers({
       function(server)
         if is_configured_servers(server, local_configured_servers) then
-          require("lspconfig")[server].setup(local_configs[server])
+          vim.lsp.enable(server)
+          vim.lsp.config(server, local_configs[server])
           configs.setup()
         elseif not is_configured_servers(server, configured_servers) then
-          require("lspconfig")[server].setup(configs.opts)
+          vim.lsp.enable(server)
+          vim.lsp.config(server, configs.opts)
           configs.setup()
         end
       end,
