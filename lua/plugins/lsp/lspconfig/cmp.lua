@@ -3,20 +3,31 @@
 return {
   keymap = {
     preset = "enter",
-    cmdline = { preset = "super-tab" },
+  },
+  cmdline = {
+    keymap = {
+      preset = "super-tab",
+    },
+  },
   },
   appearance = {
     use_nvim_cmp_as_default = true,
     nerd_font_variant = "mono",
   },
   sources = {
-    default = { "lsp", "path", "snippets", "buffer", "calc", "ripgrep" },
+    default = { "copilot", "lsp", "path", "snippets", "buffer", "calc", "ripgrep" },
     providers = {
+      copilot = {
+        name = "copilot",
+        module = "blink-cmp-copilot",
+        max_items = 1,
+        score_offset = 140,
+        async = true,
+      },
       lsp = {
         enabled = true,
         name = "lsp",
         module = "blink.cmp.sources.lsp",
-        min_keyword_length = 2,
         score_offset = 120,
       },
       path = {
