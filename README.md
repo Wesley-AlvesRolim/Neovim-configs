@@ -69,7 +69,7 @@ nvim --headless "+Lazy! sync" +qa
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [nvim-surround](https://github.com/kylechui/nvim-surround)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [notifier.nvim](https://github.com/vigoux/notifier.nvim)
+- [notify.nvim](https://github.com/rcarriga/nvim-notify.nvim)
 - [neodev.nvim](https://github.com/folke/neodev.nvim)
 - [nvim-java](https://github.com/nvim-java/nvim-java)
 - [jdtls](https://github.com/mfussenegger/nvim-jdtls)
