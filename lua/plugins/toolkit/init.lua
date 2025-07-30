@@ -16,10 +16,8 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-    },
-    event = "VimEnter",
+    dependencies = { "mason-org/mason.nvim" },
+    event = { "VeryLazy" },
     config = function()
       local mason_tool_installer = require("mason-tool-installer")
       local source_configs = require("plugins.toolkit.source")

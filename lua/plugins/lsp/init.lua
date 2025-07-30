@@ -37,7 +37,7 @@ return {
       "neovim/nvim-lspconfig",
       "mfussenegger/nvim-dap",
       {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
           registries = {
             "github:nvim-java/mason-registry",
@@ -91,7 +91,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "saghen/blink.cmp",
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
     },
     config = require("plugins.lsp.lspconfig").setup,
   },
