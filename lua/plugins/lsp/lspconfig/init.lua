@@ -12,15 +12,13 @@ local servers = {
   "pylsp",
 }
 
-local configured_servers = { "jdtls", "omnisharp", "rust_analyzer" }
-
-local local_configured_servers = { "tailwindcss", "ts_ls" }
+local local_configured_servers = { "tailwindcss", "rust_analyzer", "ts_ls" }
 
 M.setup = function()
   require("lspconfig").gdscript.setup(require("plugins.lsp.lspconfig.handlers").opts)
 
   require("plugins.lsp.lspconfig.cmp")
-  require("plugins.lsp.lspconfig.mason").setup(servers, configured_servers, local_configured_servers)
+  require("plugins.lsp.lspconfig.mason").setup(servers, local_configured_servers)
   require("plugins.lsp.lspconfig.handlers").setup()
 end
 

@@ -52,12 +52,9 @@ M.rust_analyzer = {
   filetypes = { "rust" },
   settings = {
     ["rust-analyzer"] = {
-      checkOnSave = {
-        command = "clippy",
-      },
-      cargo = {
-        allFeatures = true,
-      },
+      cachePriming = { enable = false },
+      cargo = { allFeatures = true },
+      completion = { limit = 5 },
       inlayHints = {
         enabled = false,
         expressionAdjustmentHints = { enable = false },
