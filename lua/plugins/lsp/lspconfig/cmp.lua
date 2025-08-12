@@ -65,11 +65,15 @@ return {
         ---@type blink-ripgrep.Options
         opts = {
           prefix_min_len = 3,
-          context_size = 5,
-          max_filesize = "1M",
           project_root_marker = { ".git", "package.json", "Cargo.toml" },
-          search_casing = "--ignore-case",
-          additional_rg_options = {},
+          backend = {
+            context_size = 5,
+            ripgrep = {
+              additional_rg_options = {},
+              max_filesize = "1M",
+              search_casing = "--ignore-case",
+            },
+          },
           fallback_to_regex_highlighting = true,
         },
       },
