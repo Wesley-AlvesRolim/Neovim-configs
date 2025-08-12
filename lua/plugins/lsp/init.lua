@@ -73,18 +73,6 @@ return {
     },
   },
 
-  -- Rust
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^5",
-    ft = { "rust" },
-    config = function()
-      vim.g.rustaceanvim = {
-        server = require("plugins.lsp.lspconfig.local-configs").rust_analyzer,
-      }
-    end,
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -92,6 +80,11 @@ return {
     dependencies = {
       "saghen/blink.cmp",
       "mason-org/mason.nvim",
+      {
+        "mrded/nvim-lsp-notify",
+        dependencies = { "rcarriga/nvim-notify" },
+        opts = {},
+      },
     },
     config = require("plugins.lsp.lspconfig").setup,
   },
