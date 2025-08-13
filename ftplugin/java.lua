@@ -13,10 +13,11 @@ if root_dir == "" then
   return
 end
 
-local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
+local mason_packages_path = vim.fn.stdpath("data") .. "/mason/packages"
+local jdtls_path = mason_packages_path .. "/jdtls"
 local shared_config_path = jdtls_path .. "/config_linux"
 local path_to_plugins = jdtls_path .. "/plugins/"
-local lombok_path = jdtls_path .. "/lombok.jar"
+local lombok_path = mason_packages_path .. "/lombok-nightly/lombok.jar"
 local path_to_jar = vim.fn.glob(path_to_plugins .. "org.eclipse.equinox.launcher_*.jar")
 
 local cache_dir = vim.fs.normalize("~/.cache/jdtls")

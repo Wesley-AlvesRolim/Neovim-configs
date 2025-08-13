@@ -24,10 +24,9 @@ return {
   },
 
   -- Java
-  { "mfussenegger/nvim-jdtls", enabled = false },
+  { "mfussenegger/nvim-jdtls" },
   {
     "nvim-java/nvim-java",
-    enabled = false,
     dependencies = {
       "nvim-java/lua-async-await",
       "nvim-java/nvim-java-core",

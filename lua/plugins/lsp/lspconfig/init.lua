@@ -6,13 +6,12 @@ local servers = {
   "yamlls",
   "dockerls",
   "docker_compose_language_service",
-  "jdtls",
   "omnisharp",
   "biome",
   "pylsp",
 }
 
-local local_configured_servers = { "tailwindcss", "rust_analyzer", "ts_ls" }
+local local_configured_servers = { "tailwindcss", "rust_analyzer", "ts_ls", "jdtls" }
 
 M.setup = function()
   require("lspconfig").gdscript.setup(require("plugins.lsp.lspconfig.handlers").opts)
