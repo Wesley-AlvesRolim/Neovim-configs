@@ -73,4 +73,74 @@ M.rust_analyzer = {
   },
 }
 
+M.jdtls = {
+  settings = {
+    java = {
+      configuration = {},
+      eclipse = {
+        downloadSources = true,
+      },
+      maven = {
+        downloadSources = true,
+      },
+      import = {
+        gradle = {
+          enabled = true,
+        },
+      },
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+      },
+      references = {
+        includeDecompiledSources = true,
+      },
+      format = {
+        enabled = true,
+        settings = {
+          -- source: https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml,
+          -- source: https://raw.githubusercontent.com/palantir/palantir-java-format/refs/heads/develop/.baseline/idea/intellij-java-palantir-style.xml
+          url = vim.fn.stdpath("data") .. "/intellij-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
+      },
+      signatureHelp = { enabled = true },
+      completion = {
+        favoriteStaticMembers = {
+          "org.hamcrest.MatcherAssert.assertThat",
+          "org.hamcrest.Matchers.*",
+          "org.hamcrest.CoreMatchers.*",
+          "org.junit.jupiter.api.Assertions.*",
+          "java.util.Objects.requireNonNull",
+          "java.util.Objects.requireNonNullElse",
+          "org.mockito.Mockito.*",
+        },
+      },
+      contentProvider = { preferred = "fernflower" },
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+        },
+      },
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        },
+        useBlocks = true,
+      },
+    },
+
+    flags = {
+      allow_incremental_sync = true,
+    },
+
+    init_options = {
+      bundles = {},
+    },
+  },
+}
+
 return M

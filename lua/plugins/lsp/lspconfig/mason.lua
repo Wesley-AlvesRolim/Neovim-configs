@@ -2,6 +2,7 @@ local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 local configs = require("plugins.lsp.lspconfig.handlers")
 local local_configs = require("plugins.lsp.lspconfig.local-configs")
+local java = require("plugins.lsp.lspconfig.local-configs.java")
 
 local M = {}
 
@@ -29,7 +30,9 @@ M.setup = function(servers, local_configured_servers)
     end
 
     for _, server in ipairs(local_configured_servers) do
-      if local_configs[server] then
+      if local_configs[server] == "jdtls" then
+        java.setup()
+      elseif local_configs[server] then
         vim.lsp.enable(server)
         vim.lsp.config(server, local_configs[server])
         configs.setup()
