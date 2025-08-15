@@ -1,6 +1,7 @@
 local M = {}
 local util = require("lspconfig.util")
 local lsp_opts = require("plugins.lsp.lspconfig.handlers").opts
+local default_progress_handler = vim.lsp.handlers["$/progress"]
 
 M.tailwindcss = {
   capabilities = lsp_opts.capabilities,
@@ -74,6 +75,8 @@ M.rust_analyzer = {
 }
 
 M.jdtls = {
+  capabilities = lsp_opts.capabilities,
+  on_attach = lsp_opts.on_attach,
   settings = {
     java = {
       configuration = {},
@@ -140,6 +143,13 @@ M.jdtls = {
     init_options = {
       bundles = {},
     },
+  },
+  handlers = {
+    ["$/progress"] = function(err, result, ctx)
+      if result.value.kind ~= "report" then
+        default_progress_handler(err, result, ctx)
+      end
+    end,
   },
 }
 

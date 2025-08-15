@@ -3,15 +3,15 @@ local M = {}
 local local_configs = require("plugins.lsp.lspconfig.local-configs")
 local utils = require("utils")
 
-local jdtls_ok, jdtls = pcall(require, "jdtls")
-if not jdtls_ok then
-  vim.notify("JDTLS not found, install with `:LspInstall jdtls`")
-  return M
-end
-
 local nvim_java_ok, nvim_java = pcall(require, "java")
 if not nvim_java_ok then
   vim.notify("nvim-java not found, please install")
+  return M
+end
+
+local jdtls_ok, _ = pcall(require, "jdtls")
+if not jdtls_ok then
+  vim.notify("JDTLS not found, install with `:Lazy`")
   return M
 end
 
@@ -77,7 +77,10 @@ M.config = utils.merge(local_configs.jdtls, {
 
 M.setup = function()
   nvim_java.setup()
-  jdtls.start_or_attach(M.config)
+  local server = "jdtls"
+  vim.lsp.enable(server)
+  vim.lsp.config(server, local_configs[server])
+  opts.setup()
   vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     pattern = { "*.java" },
     callback = function()
