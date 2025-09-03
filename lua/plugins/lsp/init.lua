@@ -24,7 +24,6 @@ return {
   },
 
   -- Java
-  { "mfussenegger/nvim-jdtls" },
   { "nvim-java/nvim-java" },
 
   -- TS

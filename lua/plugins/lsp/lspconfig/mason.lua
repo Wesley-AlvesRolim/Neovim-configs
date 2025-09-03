@@ -30,7 +30,8 @@ M.setup = function(servers, local_configured_servers)
     end
 
     for _, server in ipairs(local_configured_servers) do
-      if local_configs[server] == "jdtls" then
+      if server == "jdtls" then
+        vim.lsp.enable(server, false)
         java.setup()
       elseif local_configs[server] then
         vim.lsp.enable(server)

@@ -79,7 +79,15 @@ M.jdtls = {
   on_attach = lsp_opts.on_attach,
   settings = {
     java = {
-      configuration = {},
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-17",
+            path = vim.fn.expand("~/.local/share/nvim/mason/packages/openjdk-17/jdk-17.0.2/"),
+            default = true,
+          },
+        },
+      },
       eclipse = {
         downloadSources = true,
       },
@@ -111,6 +119,7 @@ M.jdtls = {
       },
       signatureHelp = { enabled = true },
       completion = {
+        maxResults = 10,
         favoriteStaticMembers = {
           "org.hamcrest.MatcherAssert.assertThat",
           "org.hamcrest.Matchers.*",
