@@ -2,7 +2,7 @@ local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 local configs = require("plugins.lsp.lspconfig.handlers")
 local local_configs = require("plugins.lsp.lspconfig.local-configs")
-local java = require("plugins.lsp.lspconfig.local-configs.java")
+local java_ok, java = pcall(require, "plugins.lsp.lspconfig.local-configs.java")
 
 local M = {}
 
@@ -30,9 +30,10 @@ M.setup = function(servers, local_configured_servers)
     end
 
     for _, server in ipairs(local_configured_servers) do
-      if server == "jdtls" then
-        vim.lsp.enable(server, false)
+      if java_ok and server == "jdtls" then
         java.setup()
+      elseif server == "rust_analyzer" then
+        vim.lsp.enable(server, false) -- rustaceanvim will do this
       elseif local_configs[server] then
         vim.lsp.enable(server)
         vim.lsp.config(server, local_configs[server])
