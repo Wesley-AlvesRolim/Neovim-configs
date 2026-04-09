@@ -15,6 +15,13 @@ nvim --headless "+Lazy! sync" +qa
 
 ## Dependencies
 
+- Postgres
+
+  ```sh
+  sudo apt install postgresql-18
+  ```
+
+
 - Ripgrep
 
   ```sh
@@ -37,49 +44,51 @@ nvim --headless "+Lazy! sync" +qa
 
 ### Plugins
 
-- [lazy](https://github.com/folke/lazy.nvim.git)
-- [plenary](https://github.com/nvim-lua/plenary.nvim)
-- [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-- [nvim-colorizer](https://github.com/NvChad/nvim-colorizer.lua)
+- [lazy](https://github.com/folke/lazy.nvim)
+- [persistence](https://github.com/folke/persistence.nvim)
+- [hardtime](https://github.com/m4xshen/hardtime.nvim)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [theme](https://github.com/sam4llis/nvim-tundra)
-- [buffer-manager](https://github.com/j-morano/buffer_manager.nvim)
-- [statusline](https://github.com/echasnovski/mini.statusline)
-- [mini.ai](https://github.com/echasnovski/mini.ai)
-- [improved-ft](https://github.com/backdround/improved-ft.nvim)
+- [Oil](https://github.com/stevearc/oil.nvim)
+- [better-ts-errors](https://github.com/davidosomething/format-ts-errors.nvim)
+- [blink-ripgrep](https://github.com/mikavilpas/blink-ripgrep.nvim)
 - [blink.cmp](https://github.com/Saghen/blink.cmp)
 - [blink.compat](https://github.com/Saghen/blink.compat)
-- [blink-ripgrep](https://github.com/mikavilpas/blink-ripgrep.nvim)
-- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [buffer-manager](https://github.com/j-morano/buffer_manager.nvim)
 - [cmp-calc](https://github.com/hrsh7th/cmp-calc)
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [mason](https://github.com/williamboman/mason.nvim)
-- [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)
-- [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
+- [codecompanion](https://github.com/olimorris/codecompanion.nvim)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
-- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [dadbod-grip.nvim](https://github.com/joryeugene/dadbod-grip.nvim)
+- [droid-nvim](https://github.com/rizukirr/droid-nvim)
+- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [improved-ft](https://github.com/backdround/improved-ft.nvim)
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
+- [mason-lspconfig](https://github.com/mason-org/mason-lspconfig.nvim)
+- [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
+- [mason](https://github.com/mason-org/mason.nvim)
+- [mini.ai](https://github.com/echasnovski/mini.ai)
+- [mini.statusline](https://github.com/echasnovski/mini.statusline)
+- [neo-gitmoji.nvim](https://github.com/HenriqueArtur/neo-gitmoji.nvim)
+- [notify.nvim](https://github.com/rcarriga/nvim-notify)
+- [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+- [nvim-colorizer](https://github.com/NvChad/nvim-colorizer.lua)
 - [nvim-dap-repl-highlights](https://github.com/LiadOz/nvim-dap-repl-highlights)
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
-- [Oil](https://github.com/stevearc/oil.nvim)
-- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
-- [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
-- [nvim-surround](https://github.com/kylechui/nvim-surround)
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [notify.nvim](https://github.com/rcarriga/nvim-notify.nvim)
-- [neodev.nvim](https://github.com/folke/neodev.nvim)
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-java](https://github.com/nvim-java/nvim-java)
-- [jdtls](https://github.com/mfussenegger/nvim-jdtls)
-- [better-ts-erros](https://github.com/davidosomething/format-ts-errors.nvim)
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+- [nvim-lsp-notify](https://github.com/mrded/nvim-lsp-notify)
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- [nvim-surround](https://github.com/kylechui/nvim-surround)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
+- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
+- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
-- [typescript-tools](https://github.com/pmizio/typescript-tools.nvim)
-- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
-- [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
-- [persistence](https://github.com/folke/persistence.nvim)
-- [presence.nvim](https://github.com/andweeb/presence.nvim)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [theme](https://github.com/sam4llis/nvim-tundra)
+- [tmux.nvim](https://github.com/aserowy/tmux.nvim)
 
 ---
