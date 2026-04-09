@@ -1,30 +1,22 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
-  },
-
-  {
-    "giuxtaposition/blink-cmp-copilot",
-    event = "InsertEnter",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" },
-    },
-  },
-
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
+    "olimorris/codecompanion.nvim",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "lua", "java" },
     event = "BufEnter",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" },
-      { "nvim-lua/plenary.nvim", branch = "master" },
+    version = "^18.0.0",
+    opts = {
+      interactions = {
+        chat = {
+          adapter = {
+            name = "copilot",
+            model = "gpt-4.1",
+          },
+        },
+      },
     },
-    build = "make tiktoken",
-    opts = {},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
   },
 }
