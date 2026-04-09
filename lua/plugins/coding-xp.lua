@@ -91,4 +91,20 @@ return {
     event = "BufEnter",
     opts = {},
   },
+
+  -- DB
+  {
+    "joryeugene/dadbod-grip.nvim",
+    event = "VeryLazy",
+    dependencies = { "saghen/blink.cmp" },
+    config = function(_, _)
+      require("dadbod-grip").setup({
+        completion = false,
+        connections_path = vim.fs.normalize("~/.config/.grip/connections.json"),
+        keymaps = {
+          qpad_execute = "<F5>",
+        },
+      })
+    end,
+  },
 }

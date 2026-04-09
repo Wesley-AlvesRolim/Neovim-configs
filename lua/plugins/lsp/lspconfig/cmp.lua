@@ -14,14 +14,12 @@ return {
     nerd_font_variant = "mono",
   },
   sources = {
-    default = { "copilot", "lsp", "path", "snippets", "buffer", "calc", "ripgrep" },
+    default = { "dadbod_grip", "lsp", "path", "snippets", "buffer", "calc", "ripgrep" },
     providers = {
-      copilot = {
-        name = "copilot",
-        module = "blink-cmp-copilot",
-        max_items = 1,
+      dadbod_grip = {
+        name = "SQL",
+        module = "dadbod-grip.completion.blink",
         score_offset = 140,
-        async = true,
       },
       lsp = {
         enabled = true,

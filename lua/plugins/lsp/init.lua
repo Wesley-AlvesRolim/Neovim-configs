@@ -59,6 +59,7 @@ return {
       "mikavilpas/blink-ripgrep.nvim",
       "hrsh7th/cmp-calc",
       { "saghen/blink.compat", version = "*", opts = {} },
+      "joryeugene/dadbod-grip.nvim",
     },
     opts = require("plugins.lsp.lspconfig.cmp"),
   },
