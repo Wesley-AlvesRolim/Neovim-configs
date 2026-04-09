@@ -4,7 +4,7 @@ local pid = vim.fn.getpid()
 local mason_bin_dir = vim.fn.stdpath("data") .. "/mason/bin/"
 local omnisharp_bin = mason_bin_dir .. "omnisharp"
 
-require("lspconfig")["omnisharp"].setup({
+vim.lsp.config("omnisharp", {
   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
   capabilities = opts.capabilities,
   on_attach = function(_, bufnr)

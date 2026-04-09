@@ -1,15 +1,29 @@
 local M = {}
-local util = require("lspconfig.util")
 local lsp_opts = require("plugins.lsp.lspconfig.handlers").opts
 local default_progress_handler = vim.lsp.handlers["$/progress"]
 
 M.tailwindcss = {
   capabilities = lsp_opts.capabilities,
   on_attach = lsp_opts.on_attach,
-  root_dir = function(fname)
-    return util.root_pattern("tailwind.config.*")(fname)
-      and util.find_node_modules_ancestor(fname)
-      and util.find_package_json_ancestor(fname)
+  root_dir = function(bufnr)
+    local file_path = vim.api.nvim_buf_get_name(bufnr)
+    local root_dir_of_tailwind_config = vim.fs.root(
+      file_path,
+      { "tailwind.config.js", "tailwind.config.cjs", "tailwind.config.ts", "tailwind.config.mjs" }
+    )
+    local root_dir_of_node_modules = vim.fs.root(file_path, { "node_modules" })
+    local root_dir_of_package_json = vim.fs.root(file_path, { "package.json" })
+
+    local is_a_root_dir_of_tailwind_project = (
+      type(root_dir_of_tailwind_config) == "string" and string.len(root_dir_of_tailwind_config) > 0
+    )
+      and (type(root_dir_of_node_modules) == "string" and string.len(root_dir_of_node_modules) > 0)
+      and (type(root_dir_of_package_json) == "string" and string.len(root_dir_of_package_json) > 0)
+
+    if is_a_root_dir_of_tailwind_project then
+      return root_dir_of_tailwind_config
+    end
+    return nil
   end,
 }
 
@@ -53,7 +67,7 @@ M.rust_analyzer = {
   filetypes = { "rust" },
   settings = {
     ["rust-analyzer"] = {
-      cachePriming = { enable = false },
+      cachePriming = { enable = true },
       cargo = { allFeatures = true },
       completion = { limit = 5 },
       inlayHints = {
@@ -109,7 +123,7 @@ M.jdtls = {
         includeDecompiledSources = true,
       },
       format = {
-        enabled = true,
+        enabled = false,
         settings = {
           -- source: https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml,
           -- source: https://raw.githubusercontent.com/palantir/palantir-java-format/refs/heads/develop/.baseline/idea/intellij-java-palantir-style.xml
@@ -155,7 +169,7 @@ M.jdtls = {
   },
   handlers = {
     ["$/progress"] = function(err, result, ctx)
-      if result.value.kind ~= "report" then
+      if result.value.kind == "end" then
         default_progress_handler(err, result, ctx)
       end
     end,

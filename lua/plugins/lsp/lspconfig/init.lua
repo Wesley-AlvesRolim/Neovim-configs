@@ -14,7 +14,7 @@ local servers = {
 local local_configured_servers = { "tailwindcss", "rust_analyzer", "ts_ls", "jdtls" }
 
 M.setup = function()
-  require("lspconfig").gdscript.setup(require("plugins.lsp.lspconfig.handlers").opts)
+  vim.lsp.config("gdscript", require("plugins.lsp.lspconfig.handlers").opts)
 
   require("plugins.lsp.lspconfig.cmp")
   require("plugins.lsp.lspconfig.mason").setup(servers, local_configured_servers)
