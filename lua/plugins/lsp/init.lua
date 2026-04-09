@@ -9,6 +9,47 @@ return {
   -- Java
   { "nvim-java/nvim-java" },
 
+  -- Rust
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^6",
+    lazy = false,
+    config = function()
+      vim.g.rustaceanvim = {
+        tools = {},
+        server = {
+          on_attach = require("plugins.lsp.lspconfig.local-configs.init").rust_analyzer.on_attach,
+          default_settings = require("plugins.lsp.lspconfig.local-configs.init").rust_analyzer.settings,
+        },
+        dap = {},
+      }
+    end,
+  },
+
+  -- Android - Kotlin
+  {
+    "rizukirr/droid-nvim",
+    tag = "v0.0.1-beta03",
+    ft = { "kotlin", "groovy", "xml" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "mason-org/mason.nvim",
+    },
+    opts = {
+      lsp = {
+        kotlin = {
+          enabled = true,
+          jvm_args = {
+            "-J-Xmx16G",
+            "-J-XX:+UseG1GC",
+          },
+        },
+        java = { enabled = false },
+        groovy = { enabled = true },
+      },
+    },
+  },
+
   -- TS
   {
     "pmizio/typescript-tools.nvim",
