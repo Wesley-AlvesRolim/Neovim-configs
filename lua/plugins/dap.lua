@@ -44,7 +44,7 @@ M.config = function()
 
   dap_vt.setup({})
   dapui.setup()
-  require("nvim-dap-repl-highlights").setup()
+  -- require("nvim-dap-repl-highlights").setup()
 
   M.config_icons()
   M.config_listeners(dap, dapui)

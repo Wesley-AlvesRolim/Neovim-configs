@@ -1,6 +1,5 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
+  "romus204/tree-sitter-manager.nvim",
   event = "BufReadPre",
   dependencies = {
     -- Auto tag
@@ -10,9 +9,7 @@ return {
   },
   config = function()
     local configs = {
-      sync_install = false,
       auto_install = true,
-      ignore_install = { "javascript", "css", "scss" },
 
       autotag = {
         enable = true,
@@ -36,12 +33,9 @@ return {
         },
       },
 
-      highlight = {
-        enable = true,
-        disable = { "html", "css", "scss" },
-        additional_vim_regex_highlighting = false,
-      },
+      highlight = true,
+      nohighlight = { "html", "css", "scss" },
     }
-    require("nvim-treesitter.configs").setup(configs)
+    require("tree-sitter-manager").setup(configs)
   end,
 }
