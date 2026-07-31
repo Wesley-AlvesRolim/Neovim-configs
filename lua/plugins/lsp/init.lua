@@ -26,30 +26,6 @@ return {
     end,
   },
 
-  -- Android - Kotlin
-  {
-    "rizukirr/droid-nvim",
-    tag = "v0.0.1-beta03",
-    ft = { "kotlin", "groovy", "xml" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "mason-org/mason.nvim",
-    },
-    opts = {
-      lsp = {
-        kotlin = {
-          enabled = true,
-          jvm_args = {
-            "-J-Xmx16G",
-            "-J-XX:+UseG1GC",
-          },
-        },
-        java = { enabled = false },
-        groovy = { enabled = true },
-      },
-    },
-  },
-
   -- TS
   {
     "pmizio/typescript-tools.nvim",

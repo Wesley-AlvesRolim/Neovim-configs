@@ -58,7 +58,6 @@ nvim --headless "+Lazy! sync" +qa
 - [codecompanion](https://github.com/olimorris/codecompanion.nvim)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [dadbod-grip.nvim](https://github.com/joryeugene/dadbod-grip.nvim)
-- [droid-nvim](https://github.com/rizukirr/droid-nvim)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [improved-ft](https://github.com/backdround/improved-ft.nvim)
