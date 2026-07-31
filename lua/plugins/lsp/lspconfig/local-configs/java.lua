@@ -77,12 +77,6 @@ M.setup = function()
   vim.lsp.enable("jdtls")
   lsp_handlers.setup()
   local_configs.jdtls.on_attach()
-  vim.api.nvim_create_autocmd({ "LspAttach", "BufWritePost" }, {
-    pattern = { "*.java" },
-    callback = function()
-      local _, _ = pcall(vim.lsp.codelens.refresh)
-    end,
-  })
 end
 
 return M
