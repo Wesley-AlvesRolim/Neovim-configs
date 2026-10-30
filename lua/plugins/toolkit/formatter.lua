@@ -13,7 +13,7 @@ end
 
 local conform = require("conform")
 local conform_format_config = {
-  lsp_fallback = true,
+  -- lsp_fallback = true,
   async = false,
   timeout_ms = 500,
 }
